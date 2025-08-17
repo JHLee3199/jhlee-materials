@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jeonghwan Lee — Publications</title>
+  <meta name="description" content="Publications by Jeonghwan Lee — Nuclear Engineering" />
+
+  <!-- Google Fonts (Pretendard 대체 권장) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- 절대경로 → 상대경로 (publications/ 하위에서) -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- 상단 바 (theme 버튼 제거, 페이지명 통일) -->
+  <header class="topbar">
+    <div class="toprow">
+      <div class="brand">Jeonghwan Lee <span class="brand-badge">Publications</span></div>
+    </div>
+  </header>
+
+  <!-- 좌측 사이드바: 상대경로 + 현재 페이지 표시 -->
+  <nav id="sidenav" class="sidenav open" aria-label="Primary">
+    <a href="../">Home</a>
+    <a href="../about/">Introduction</a>
+    <a href="../research/">Research</a>
+    <a class="active" href="./" aria-current="page">Publications</a>
+    <a href="../projects/">Projects</a>
+    <a href="../contact/">Contact</a>
+  </nav>
+
+  <!-- 본문 -->
+  <main class="container">
+    <section class="section">
+      <div class="card">
+        <h1>Publications</h1>
+
+        <!-- 예시 아이템 구조 -->
+        <ol class="pub-list">
+          <li>
+            <strong>Author1, Jeonghwan Lee, Author3</strong>,
+            “Title of the paper,” <em>Journal Name</em>, vol. XX, pp. YY–ZZ, 2025.
+            <div class="muted">
+              <a href="https://doi.org/xxxx" target="_blank" rel="noopener">DOI</a>
+              · <a href="./paper1.pdf" target="_blank" rel="noopener">PDF</a>
+              · <a href="./bib/paper1.bib" download>BibTeX</a>
+            </div>
+          </li>
+          <!-- 필요한 만큼 추가 -->
+        </ol>
+      </div>
+
+      <footer style="margin-top:32px; color:var(--muted);">
+        © <span id="year"></span> Jeonghwan Lee. All rights reserved.
+      </footer>
+    </section>
+  </main>
+
+  <!-- 최소 스크립트 -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

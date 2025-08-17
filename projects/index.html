@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>이정환 — Projects</title>
+  <meta name="description" content="이정환의 연구 프로젝트: MOOSE-KKS 확장, 계면에너지 추정 등" />
+
+  <!-- Google Fonts (Pretendard 대체 권장) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- 절대경로 → 상대경로 -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- 좌측 사이드바 (공통) -->
+  <nav id="sidenav" class="sidenav open" aria-label="Primary">
+    <a href="../">Home</a>
+    <a href="../about/">Introduction</a>
+    <a href="../research/">Research</a>
+    <a href="../publications/">Publications</a>
+    <a class="active" href="./" aria-current="page">Projects</a>
+    <a href="../contact/">Contact</a>
+  </nav>
+
+  <!-- 상단 바 (공통) -->
+  <header class="topbar">
+    <div class="toprow">
+      <div class="brand">Jeonghwan Lee <span class="brand-badge">Projects</span></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <div class="two grid">
+        <div class="card">
+          <h3>MOOSE-KKS Module Extension</h3>
+          <p class="muted">Phase equilibrium constraints, multi-phase extension.</p>
+          <ul class="list">
+            <li>Repo: <a href="https://github.com/your-id/kks-module" target="_blank" rel="noopener">github.com/your-id/kks-module</a></li>
+            <li>Key: Δμ<sub>r</sub> stabilization, mass conservation checks.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Interfacial Energy Inference</h3>
+          <p class="muted">Precipitate growth/shrink curves → γ estimation.</p>
+          <ul class="list">
+            <li>Python fitting, Uncertainty propagation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">© <span id="year"></span> 이정환.</footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

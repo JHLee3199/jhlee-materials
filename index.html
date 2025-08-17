@@ -1,42 +1,76 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jeonghwan Lee — Home</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <meta name="description" content="Jeonghwan Lee | Nuclear Engineering — Research overview and skills" />
+
+  <!-- 폰트: Pretendard는 Google Fonts에 공식 등록이 없습니다. Noto Sans KR 등 대체 권장 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- 절대경로 대신 상대경로 -->
+  <link rel="stylesheet" href="./css/style.css?v=20250910">
+
+  <!-- 저장된 테마 즉시 적용 (FOUC 방지) -->
+  <script>
+    (function(){
+      var saved = localStorage.getItem('theme');
+      if(saved === 'dark' || saved === 'light'){
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    })();
+  </script>
 </head>
+
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand">Jeonghwan Lee <span class="brand-dot">·</span>
-        <span class="brand-badge">Home</span>
-      </div>
-      <nav>
-        <a href=".">Home</a> <!-- ./ 대신 . 사용 → /index.html/ 문제 방지 -->
-        <a href="about/">Introduction</a>
-        <a href="research/">Research</a>
-        <a href="publications/">Publications</a>
-        <a href="projects/">Projects</a>
-        <a href="contact/">Contact</a>
-      </nav>
+  <!-- ===== Top bar ===== -->
+  <header class="topbar">
+    <div class="toprow">
+      <div class="brand">Jeonghwan Lee <span class="brand-badge">Home</span></div>
+    </div>
   </header>
 
+  <!-- ===== Sidebar nav ===== -->
+  <nav id="sidenav" class="sidenav open" aria-label="Primary">
+    <a id="homeLink" href="./">Home</a>
+    <a href="./about/">Introduction</a>
+    <a href="./research/">Research</a>
+    <a href="./publications/">Publications</a>
+    <a href="./projects/">Projects</a>
+    <a href="./contact/">Contact</a>
+  </nav>
+
+  <!-- ===== Main ===== -->
   <main class="container">
     <section class="hero">
       <div class="grid">
-        <img class="avatar" src="/Images/JHLee.jpg" alt="Jeonghwan Lee" />
+        <!-- 이미지 경로도 상대경로 -->
+        <img class="avatar" src="./Images/JHLee.jpg" alt="Jeonghwan Lee" />
         <div class="card">
-          <div class="kvs"><div class="muted">E-mail</div><a href="mailto:jeonghwan.lee@khu.ac.kr">jeonghwan.lee@khu.ac.kr</a></div>
-          <div class="kvs"><div class="muted">Google Scholar</div><a href="https://scholar.google.com/citations?user=QmgZ_J0AAAAJ" target="_blank">Research Profile</a></div>
-          <div class="kvs"><div class="muted">GitHub</div><a href="https://github.com/JHLee3199" target="_blank">JHLee3199</a></div>
-          <div class="kvs"><div class="muted">Phone</div><div>+82-10-5567-3199</div></div>
-          <div class="kvs"><div class="muted">Location</div>
+          <div class="kvs">
+            <div class="muted">E-mail</div>
+            <a href="mailto:jeonghwan.lee@khu.ac.kr">jeonghwan.lee@khu.ac.kr</a>
+          </div>
+          <div class="kvs">
+            <div class="muted">Google Scholar</div>
+            <a href="https://scholar.google.com/citations?user=QmgZ_J0AAAAJ" target="_blank" rel="noopener">Research Profile</a>
+          </div>
+          <div class="kvs">
+            <div class="muted">GitHub</div>
+            <a href="https://github.com/JHLee3199" target="_blank" rel="noopener">JHLee3199</a>
+          </div>
+          <div class="kvs">
+            <div class="muted">Phone</div>
+            <div>+82-10-5567-3199</div>
+          </div>
+          <div class="kvs">
+            <div class="muted">Location</div>
             <div>
-              Room 204<br>
-              Engineering Experimental Building<br>
-              Kyung Hee University<br>
-              Republic of Korea
+              Room 204, Engineering Experimental Building<br>
+              Kyung Hee University, Yongin, Republic of Korea
             </div>
           </div>
         </div>
@@ -45,35 +79,44 @@
       <div class="hero-card">
         <h1>Jeonghwan Lee <span class="muted">| Nuclear Engineering</span></h1>
         <p class="muted">Doctor candidate</p>
+
         <p>
           Research focuses on thermodynamics and kinetics of microstructural evolution in metallic alloys,
           using phase-field simulations combined with high-performance computing to investigate
           phase separation, irradiation damage, and microstructural stability.
         </p>
 
-        <h3>Skills & Expertise</h3>
+        <h3>Skills &amp; Expertise</h3>
         <ul>
           <li>Phase-field modeling of alloy microstructures.</li>
           <li>Materials science: irradiation effects, phase stability, dislocations.</li>
-          <li>Computational thermodynamics & CALPHAD.</li>
+          <li>Computational thermodynamics &amp; CALPHAD.</li>
           <li>GPU-accelerated large-scale simulations.</li>
-          <li>Python-based application development for nuclear engineering.</li>
-          <li>High-performance computing. (MPI, OpenMP, and CUDA parallel computing)</li>
+          <li>High-performance computing (MPI, OpenMP, CUDA for parallel computing).</li>
+          <li>Python-based scientific software development (PyQt5 GUI + Fortran backend integration).</li>
         </ul>
-        <div class="row">
-          <a class="btn" href="/contact/">연락하기</a>
-          <a class="btn" href="/cv.pdf" download>CV 다운로드 (PDF)</a>
+
+        <div class="row" style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="./contact/">연락하기</a>
+          <a class="btn" href="./cv.pdf" download>CV 다운로드 (PDF)</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    © <span id="year"></span> Jeonghwan Lee
-  </footer>
-
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Sidebar toggle
+    const sidenav = document.getElementById('sidenav');
+    const toggleBtn = document.getElementById('toggleMenu');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        sidenav.classList.toggle('open');
+      });
+    }
+    // ESC로 닫기
+    window.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') sidenav.classList.remove('open');
+    });
   </script>
 </body>
 </html>
