@@ -1,0 +1,93 @@
+:root {
+  --bg: #0b0c0e; --surface: #121417; --text: #e6e9ef; --muted: #a8b0bd;
+  --accent: #7cd4ff; --card: #15181c; --border: #232832; --link: #8ad5ff;
+  --shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+[data-theme="light"]{
+  --bg:#f7f8fb; --surface:#fff; --text:#121417; --muted:#3d4350; --accent:#007aff;
+  --card:#fff; --border:#e6e9ef; --link:#005bcb; --shadow:0 10px 24px rgba(2,16,43,.08);
+}
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Pretendard",system-ui,-apple-system,Segoe UI,Roboto,Noto Sans KR,Apple SD Gothic Neo,sans-serif;
+  line-height:1.65; letter-spacing:.2px;
+}
+.container{ max-width:1120px; margin:0 auto; padding:24px; }
+
+header{
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+  background: color-mix(in oklab, var(--bg), transparent 35%);
+}
+.nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.brand{ font-weight:700; letter-spacing:.2px; display:flex; align-items:center; gap:8px; }
+.brand-dot{ color:var(--muted); margin:0 2px; }
+.brand-badge{ font-weight:600; font-size:12px; letter-spacing:.3px;
+  padding:4px 8px; border:1px solid var(--border); border-radius:999px;
+  background:var(--surface); color:var(--muted);
+}
+.nav a{ color:var(--muted); text-decoration:none; margin-left:16px; font-weight:500; }
+.nav a:hover, .nav a.active{ color:var(--text); }
+.btn{
+  display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border);
+  background:var(--surface); color:var(--text); padding:10px 14px; border-radius:12px;
+  text-decoration:none; box-shadow:var(--shadow); font-weight:600;
+}
+.btn:hover{ transform:translateY(-1px); }
+
+.hero{
+  display:grid;
+  grid-template-columns: minmax(340px, 460px) minmax(0, 1fr); /* 왼쪽 적당히, 오른쪽 넓게 */
+  gap: 28px;
+  margin-top: 28px;
+  align-items: start;  /* 이미지 높이에 끌려서 카드 내용이 눌리지 않도록 */
+}
+.hero > .grid{ display:flex; flex-direction:column; gap:20px; align-items:stretch; }
+.hero-card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 16px 28px 28px;   /* 위 여백 살짝 늘림 */
+  box-shadow: var(--shadow);
+  /* 절대 높이/최대높이 설정되어 있다면 모두 제거 */
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+
+h1{ line-height:1.2; margin:0 0 8px; overflow-wrap:anywhere; }
+h2{ font-size:clamp(20px,2.6vw,28px); margin:0 0 14px; }
+h3{ font-size:18px; margin:0 0 10px; letter-spacing:.2px; }
+p{ margin:0 0 10px; }
+.muted{ color:var(--muted); }
+.grid{ display:grid; gap:18px; }
+.two{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+.three{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+.card{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow:var(--shadow); }
+.kvs{ display:grid; grid-template-columns:130px 1fr; gap:10px; }
+.kvs > div:first-child{ white-space:nowrap; }
+.tag{ display:inline-block; padding:4px 10px; border:1px solid var(--border); border-radius:999px; font-size:12px; color:var(--muted); }
+.list{ margin:0; padding-left:18px; }
+.pub{ margin-bottom:12px; }
+footer{ margin:40px 0 20px; color:var(--muted); font-size:14px; text-align:center; }
+.section{ margin-top:28px; }
+.chip{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; background:var(--surface); border:1px solid var(--border); border-radius:999px; font-size:12px; }
+.row{ display:flex; flex-wrap:wrap; gap:8px; }
+.avatar{
+  width:100%; height:auto; aspect-ratio:1/1; object-fit:cover;
+  border-radius:20px; border:1px solid var(--border); display:block; box-shadow:var(--shadow);
+}
+.split{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:860px){
+  .hero{ grid-template-columns:1fr; }
+  .two,.three,.split{ grid-template-columns:1fr; }
+}
+/* 'nowrap'을 큰 화면에서만 유지, 좁아지면 자동 줄바꿈 허용 */
+.nowrap{ white-space:nowrap; }
+@media (max-width: 1200px){
+  .nowrap{ white-space:normal; }
+}
+.h1-sub{ display:inline-block; font-weight:700; font-size:clamp(18px,2.2vw,24px); line-height:1.2; color:var(--muted); margin-top:4px; }

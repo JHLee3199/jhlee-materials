@@ -1,258 +1,79 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>이정환 | CV</title>
-  <meta name="description" content="Doctor Candidate Jeonghwan Lee — 연구 관심, 프로젝트, 논문, 경력 소개" />
-  <meta name="author" content="이정환" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0b0c0e;
-      --surface: #121417;
-      --text: #e6e9ef;
-      --muted: #a8b0bd;
-      --accent: #7cd4ff;
-      --card: #15181c;
-      --border: #232832;
-      --link: #8ad5ff;
-      --shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
-    [data-theme="light"] {
-      --bg: #f7f8fb;
-      --surface: #ffffff;
-      --text: #121417;
-      --muted: #3d4350;
-      --accent: #007aff;
-      --card: #ffffff;
-      --border: #e6e9ef;
-      --link: #005bcb;
-      --shadow: 0 10px 24px rgba(2, 16, 43, 0.08);
-    }
-    html, body { height: 100%; }
-    body {
-      margin: 0; background: var(--bg); color: var(--text);
-      font-family: "Pretendard", system-ui, -apple-system, Segoe UI, Roboto, Noto Sans KR, Apple SD Gothic Neo, sans-serif;
-      line-height: 1.65; letter-spacing: 0.2px;
-    }
-    .container { max-width: 980px; margin: 0 auto; padding: 24px; }
-    header {
-      position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border); background: color-mix(in oklab, var(--bg), transparent 35%);
-    }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .brand { font-weight: 700; letter-spacing: 0.4px; }
-    .nav a { color: var(--muted); text-decoration: none; margin-left: 16px; font-weight: 500; }
-    .nav a:hover { color: var(--text); }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border);
-      background: var(--surface); color: var(--text); padding: 10px 14px; border-radius: 12px; text-decoration: none;
-      box-shadow: var(--shadow); font-weight: 600;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .hero {
-      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px; margin-top: 28px; align-items: center;
-    }
-    .hero-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; box-shadow: var(--shadow);
-    }
-    h1 { font-size: clamp(28px, 4vw, 40px); margin: 0 0 8px; }
-    h2 { font-size: clamp(20px, 2.6vw, 28px); margin: 0 0 14px; }
-    h3 { font-size: 18px; margin: 0 0 10px; letter-spacing: 0.2px; }
-    p { margin: 0 0 10px; }
-    .muted { color: var(--muted); }
-    .grid { display: grid; gap: 18px; }
-    .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px; box-shadow: var(--shadow); }
-    .kvs { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
-    .tag { display: inline-block; padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); }
-    .list { margin: 0; padding-left: 18px; }
-    .pub { margin-bottom: 12px; }
-    footer { margin: 40px 0 20px; color: var(--muted); font-size: 14px; text-align: center; }
-    .section { margin-top: 28px; }
-    .chip { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; background: var(--surface); border:1px solid var(--border); border-radius: 999px; font-size: 12px; }
-    .row { display:flex; flex-wrap: wrap; gap:8px; }
-    .avatar { width: 120px; height: 120px; border-radius: 20px; object-fit: cover; border: 1px solid var(--border); }
-    .split { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
-    @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .two, .three, .split { grid-template-columns: 1fr; } }
-  </style>
+  <title>Jeonghwan Lee — Home</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <header>
     <div class="container nav">
-      <div class="brand">이정환 · CV</div>
-      <nav aria-label="섹션 이동">
-        <a href="#about">소개</a>
-        <a href="#research">관심분야</a>
-        <a href="#pubs">논문</a>
-        <a href="#projects">프로젝트</a>
-        <a href="#contact">연락처</a>
-        <button class="btn" id="themeBtn" aria-label="테마 전환">🌓 테마</button>
+      <div class="brand">Jeonghwan Lee <span class="brand-dot">·</span>
+        <span class="brand-badge">Home</span>
+      </div>
+      <nav>
+        <a href=".">Home</a> <!-- ./ 대신 . 사용 → /index.html/ 문제 방지 -->
+        <a href="about/">Introduction</a>
+        <a href="research/">Research</a>
+        <a href="publications/">Publications</a>
+        <a href="projects/">Projects</a>
+        <a href="contact/">Contact</a>
       </nav>
-    </div>
   </header>
 
-  <main class="container" id="top">
+  <main class="container">
     <section class="hero">
-      <div class="hero-card">
-        <h1>Jeonghwan Lee <span class="muted">| 재료과학 대학원생</span></h1>
-        <p class="muted">계면 열역학 · 상전이 · 위상장법 · MOOSE · KKS 모델</p>
-        <p>실험과 계산모사를 결합하여 합금계 상분해 거동과 미세조직 진화를 연구합니다. 오픈소스 프레임워크와 자작 코드로 물성 모델을 구현하고, 고체상 반응의 동역학을 검증·예측합니다.</p>
-        <div class="row" style="margin-top:10px">
-          <a class="btn" href="#contact">연락하기</a>
-          <a class="btn" href="./cv.pdf" download>CV 다운로드 (PDF)</a>
-        </div>
-      </div>
       <div class="grid">
-        <img class="avatar" src="https://avatars.githubusercontent.com/u/9919" alt="프로필 이미지 자리표시자" />
+        <img class="avatar" src="/Images/JHLee.jpg" alt="Jeonghwan Lee" />
         <div class="card">
-          <div class="kvs">
-            <div class="muted">이메일</div>
-            <a href="mailto:you@example.com">you@example.com</a>
-          </div>
-          <div class="kvs">
-            <div class="muted">GitHub</div>
-            <a href="https://github.com/your-id" target="_blank" rel="noopener">github.com/your-id</a>
-          </div>
-          <div class="kvs">
-            <div class="muted">Google Scholar</div>
-            <a href="https://scholar.google.com/" target="_blank" rel="noopener">Scholar 프로필</a>
-          </div>
-          <div class="kvs">
-            <div class="muted">위치</div>
-            <div>Seoul, KR</div>
+          <div class="kvs"><div class="muted">E-mail</div><a href="mailto:jeonghwan.lee@khu.ac.kr">jeonghwan.lee@khu.ac.kr</a></div>
+          <div class="kvs"><div class="muted">Google Scholar</div><a href="https://scholar.google.com/citations?user=QmgZ_J0AAAAJ" target="_blank">Research Profile</a></div>
+          <div class="kvs"><div class="muted">GitHub</div><a href="https://github.com/JHLee3199" target="_blank">JHLee3199</a></div>
+          <div class="kvs"><div class="muted">Phone</div><div>+82-10-5567-3199</div></div>
+          <div class="kvs"><div class="muted">Location</div>
+            <div>
+              Room 204<br>
+              Engineering Experimental Building<br>
+              Kyung Hee University<br>
+              Republic of Korea
+            </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section id="about" class="section split">
-      <div class="card">
-        <h2>소개</h2>
-        <p>현재 △△대학교 재료과학과 석/박사과정. <strong>상분리</strong>와 <strong>계면 에너지</strong>, <strong>확산</strong>을 중심으로 연구합니다. 실험 데이터와 전산모사를 상호 검증해 물리적으로 해석 가능한 모델을 제시하는 데 관심이 있습니다.</p>
-      </div>
-      <div class="card">
-        <h2>핵심 역량</h2>
-        <ul class="list">
-          <li>Phase-field (Cahn–Hilliard, Allen–Cahn, KKS) 수치해석</li>
-          <li>MOOSE Framework, PETSc, MPI 병렬화</li>
-          <li>Python/Fortran/C++ 계산과학, 데이터 처리</li>
-          <li>실험–시뮬레이션 상호검증, 반응항 모델링</li>
+      <div class="hero-card">
+        <h1>Jeonghwan Lee <span class="muted">| Nuclear Engineering</span></h1>
+        <p class="muted">Doctor candidate</p>
+        <p>
+          Research focuses on thermodynamics and kinetics of microstructural evolution in metallic alloys,
+          using phase-field simulations combined with high-performance computing to investigate
+          phase separation, irradiation damage, and microstructural stability.
+        </p>
+
+        <h3>Skills & Expertise</h3>
+        <ul>
+          <li>Phase-field modeling of alloy microstructures.</li>
+          <li>Materials science: irradiation effects, phase stability, dislocations.</li>
+          <li>Computational thermodynamics & CALPHAD.</li>
+          <li>GPU-accelerated large-scale simulations.</li>
+          <li>Python-based application development for nuclear engineering.</li>
+          <li>High-performance computing. (MPI, OpenMP, and CUDA parallel computing)</li>
         </ul>
-        <div class="row" style="margin-top:8px">
-          <span class="chip">C++</span>
-          <span class="chip">Python</span>
-          <span class="chip">Fortran</span>
-          <span class="chip">NumPy</span>
-          <span class="chip">MOOSE</span>
+        <div class="row">
+          <a class="btn" href="/contact/">연락하기</a>
+          <a class="btn" href="/cv.pdf" download>CV 다운로드 (PDF)</a>
         </div>
       </div>
     </section>
-
-    <section id="research" class="section">
-      <div class="card">
-        <h2>연구 관심</h2>
-        <div class="two grid">
-          <div>
-            <h3>계면 열역학과 상분리</h3>
-            <p class="muted">자유에너지 함수, 화학퍼텐셜 경사, 기브스-톰슨 효과</p>
-          </div>
-          <div>
-            <h3>위상장 기반 미세조직 예측</h3>
-            <p class="muted">KKS·CH 결합, 다성분 확산, 탄성항 없는 모델</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pubs" class="section">
-      <div class="card">
-        <h2>선정 논문 · 발표</h2>
-        <ol class="list">
-          <li class="pub"><strong>J. Lee</strong>, et al., "Phase-field simulation of ...", <em>Acta Materialia</em>, 2025. <a href="#">DOI</a></li>
-          <li class="pub">국내학회, 2024, "KKS 기반 합금 상분리 시뮬레이션" 구두발표.</li>
-        </ol>
-      </div>
-    </section>
-
-    <section id="projects" class="section">
-      <div class="two grid">
-        <div class="card">
-          <h3>MOOSE-KKS 모듈 확장</h3>
-          <p class="muted">Kim–Kim–Suzuki 모델의 상 평형 제약 구현, 다상 확장.</p>
-          <ul class="list">
-            <li>Repository: <a href="https://github.com/your-id/kks-module">github.com/your-id/kks-module</a></li>
-            <li>주요 기여: 반응항 Δμ_r 안정화, 농도 보존 검사.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>합금 계면 장력 역추정</h3>
-          <p class="muted">원형 석출물 수축/성장 곡선 적합으로 γ 추정.</p>
-          <ul class="list">
-            <li>Python fitting, Uncertainty propagation</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="two grid">
-        <div class="card">
-          <h2>학력</h2>
-          <ul class="list">
-            <li>△△대학교, 재료과학과, 석/박사과정 (20XX–)</li>
-            <li>□□대학교, 신소재공학과, 학사 (20XX)</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h2>수상 · 활동</h2>
-          <ul class="list">
-            <li>우수논문상, ○○학회, 2024</li>
-            <li>Teaching Assistant (Thermo II), 2023</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <div class="card">
-        <h2>연락처</h2>
-        <p>협업·세미나·자문 가능. 아래 주소로 연락 주세요.</p>
-        <ul class="list">
-          <li>이메일: <a href="mailto:you@example.com">you@example.com</a></li>
-          <li>LinkedIn: <a href="https://linkedin.com/in/your-id">linkedin.com/in/your-id</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <footer>
-      © <span id="year"></span> 이정환. All rights reserved. · <a href="#top" class="muted">맨 위로</a>
-    </footer>
   </main>
 
+  <footer>
+    © <span id="year"></span> Jeonghwan Lee
+  </footer>
+
   <script>
-    // 현재 연도
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // 테마 토글: 로컬 저장
-    const btn = document.getElementById('themeBtn');
-    const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if (saved) root.setAttribute('data-theme', saved);
-    btn.addEventListener('click', () => {
-      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-    });
-
-    // 시스템 테마 기본
-    if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      root.setAttribute('data-theme', 'light');
-    }
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
