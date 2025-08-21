@@ -9,11 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <!-- 사이트 공통 스타일 -->
+  <!-- Site CSS -->
   <link rel="stylesheet" href="../css/style.css">
 
-  <!-- (선택) publications용 보조 스타일: PDF 버튼 -->
+  <!-- Page-scoped helpers (PDF chip + small mobile tweaks) -->
   <style>
+    /* 버튼 모양 */
     .pub-sub { position: relative; }
     .pdf-link{
       margin-left: auto;
@@ -35,18 +36,31 @@
       text-decoration: none;
     }
     .pdf-link::before{ content:"⬇︎"; margin-right:6px; font-size:.9em; opacity:.9; }
+
+    /* 긴 제목이 한 글자씩 세로로 깨지지 않게 */
+    .card h1{ word-break: normal; overflow-wrap: break-word; }
+    .pub-title{ word-break: normal; overflow-wrap: anywhere; }
+
+    /* 작은 화면에서 카드 여백/폰트 살짝 조정 */
+    @media (max-width: 560px){
+      .pub-list.nice > .pub{ padding: 12px 12px; }
+      .pub-title{ font-size: 1.02rem; line-height: 1.35; }
+    }
   </style>
 </head>
 <body>
   <!-- 상단 바 -->
   <header class="topbar">
     <div class="toprow">
+      <!-- 모바일 메뉴 버튼 -->
+      <button class="menu-btn" id="menuBtn" aria-controls="sidenav" aria-expanded="false" aria-label="Open menu">☰</button>
       <div class="brand">Jeonghwan Lee <span class="brand-badge">Publications</span></div>
     </div>
   </header>
 
-  <!-- 좌측 사이드바 -->
-  <nav id="sidenav" class="sidenav open" aria-label="Primary">
+  <!-- 좌측 사이드바 (모바일에서는 오프캔버스) -->
+  <!-- 중요: 'open' 클래스를 제거해야 모바일에서 슬라이드로 동작합니다 -->
+  <nav id="sidenav" class="sidenav" aria-label="Primary">
     <a href="../">Home</a>
     <a href="../about/">Introduction</a>
     <a href="../research/">Research</a>
@@ -54,6 +68,9 @@
     <a href="../projects/">Projects</a>
     <a href="../contact/">Contact</a>
   </nav>
+
+  <!-- 오버레이 (모바일 메뉴 열릴 때 표시) -->
+  <div id="overlay" class="overlay" hidden></div>
 
   <!-- 본문 -->
   <main class="container publications-wide">
@@ -167,16 +184,16 @@
 
           <li class="pub">
             <div class="pub-body">
-            <div class="pub-title">
+              <div class="pub-title">
               Investigation of Neutron-Irradiated Microstructure of Fe–Cr System: A GPU Accelerated Phase-field method
+              </div>
+              <div class="pub-sub">
+                <span class="pub-authors"><strong>J Lee</strong>, K Chang</span>
+                <span class="year-badge">2020</span>
+                <a class="pdf-link" href="../papers/lee_chang_2020_neutron_gpu.pdf"
+                   download="lee_chang_2020_neutron_gpu.pdf" aria-label="Download PDF">PDF</a>
+              </div>
             </div>
-            <div class="pub-sub">
-              <span class="pub-authors"><strong>J Lee</strong>, K Chang</span>
-              <span class="year-badge">2020</span>
-              <a class="pdf-link" href="../papers/lee_chang_2020_neutron_gpu.pdf"
-                 download="lee_chang_2020_neutron_gpu.pdf" aria-label="Download PDF">PDF</a>
-            </div>
-          </div>
           </li>
 
         </ol>
@@ -192,7 +209,7 @@
     // 연도 표시
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 안전장치: 외부 링크/비-PDF면 download 제거 후 새 탭
+    // 외부/비-PDF 링크 안전 처리
     (function fixPdfLinks(){
       document.querySelectorAll('a.pdf-link').forEach(a => {
         try {
@@ -209,6 +226,32 @@
           a.setAttribute('rel','noopener');
         }
       });
+    })();
+
+    // 오프캔버스 메뉴 토글 (모바일)
+    (function(){
+      const btn = document.getElementById('menuBtn');
+      const nav = document.getElementById('sidenav');
+      const overlay = document.getElementById('overlay');
+      if(!btn || !nav || !overlay) return;
+
+      function openNav(){
+        nav.classList.add('open');
+        overlay.hidden = false;
+        document.body.classList.add('menu-open');
+        btn.setAttribute('aria-expanded','true');
+      }
+      function closeNav(){
+        nav.classList.remove('open');
+        overlay.hidden = true;
+        document.body.classList.remove('menu-open');
+        btn.setAttribute('aria-expanded','false');
+      }
+
+      btn.addEventListener('click', ()=> nav.classList.contains('open') ? closeNav() : openNav());
+      overlay.addEventListener('click', closeNav);
+      window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeNav(); });
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
     })();
   </script>
 </body>
