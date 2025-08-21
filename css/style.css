@@ -182,3 +182,34 @@ body.menu-open{ overflow:hidden; }
   .pub-list.nice > .pub{ grid-template-columns: 2ch 1fr; padding:12px 12px; }
   .pub-title{ font-size:1.02rem; }
 }
+/* === Mobile fixes for Home layout === */
+
+/* 1) 절대 가로 스크롤 방지 */
+html, body { overflow-x: hidden; }
+
+/* 2) 모바일에서는 hero를 1열로 쌓기 */
+@media (max-width: 920px){
+  .hero{ display: block; }
+  .hero > .grid{ margin-bottom: 16px; }
+}
+
+/* 3) 긴 제목이 한 글자씩 줄바꿈되지 않도록 */
+.hero-card h1{
+  word-break: normal;           /* 단어 중간 줄바꿈 금지 */
+  overflow-wrap: break-word;    /* 너무 길면 단어 단위로만 줄바꿈 */
+}
+
+/* 4) 작은 화면에서 제목/브랜드 크기 조정 */
+@media (max-width: 560px){
+  .hero-card h1{ font-size: 22px; line-height: 1.25; }
+  .brand{ font-size: 16px; }
+  .brand-badge{ font-size: 11px; padding: 3px 6px; }
+}
+
+/* 5) 카드 내부 key–value 표 레이아웃이 과도하게 넓지 않게 */
+@media (max-width: 560px){
+  .kvs{ grid-template-columns: 110px 1fr; } /* 라벨폭 살짝 축소 */
+}
+
+/* 6) 아바타 이미지가 부모 폭을 넘지 않도록 보장 */
+.avatar{ max-width: 100%; height: auto; display: block; }
