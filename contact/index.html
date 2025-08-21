@@ -6,17 +6,18 @@
   <title>이정환 — Contact</title>
   <meta name="description" content="이정환 연락처 및 프로필 링크" />
 
-  <!-- Google Fonts (Pretendard 대체 권장) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-  <!-- 절대경로 → 상대경로 -->
+  <!-- Site CSS -->
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <!-- 좌측 사이드바 (공통) -->
-  <nav id="sidenav" class="sidenav open" aria-label="Primary">
+  <!-- 좌측 사이드바 (데스크톱 고정 / 모바일 오프캔버스) -->
+  <!-- 중요: 모바일에서 기본으로 숨기기 위해 open 클래스 제거 -->
+  <nav id="sidenav" class="sidenav" aria-label="Primary">
     <a href="../">Home</a>
     <a href="../about/">Introduction</a>
     <a href="../research/">Research</a>
@@ -25,9 +26,14 @@
     <a class="active" href="./" aria-current="page">Contact</a>
   </nav>
 
-  <!-- 상단 바 (공통) -->
+  <!-- 모바일 메뉴 오버레이 -->
+  <div id="overlay" class="overlay" hidden></div>
+
+  <!-- 상단 바 -->
   <header class="topbar">
     <div class="toprow">
+      <!-- 모바일 메뉴 버튼 -->
+      <button class="menu-btn" id="menuBtn" aria-controls="sidenav" aria-expanded="false" aria-label="Open menu">☰</button>
       <div class="brand">Jeonghwan Lee <span class="brand-badge">Contact</span></div>
     </div>
   </header>
@@ -44,12 +50,12 @@
 
         <div class="kvs">
           <div class="muted">Phone</div>
-          <div>+82-10-5567-3199</div>
+          <a href="tel:+821055673199">+82-10-5567-3199</a>
         </div>
 
         <div class="kvs">
           <div class="muted">Google Scholar</div>
-          <a href="https://scholar.google.com/citations?user=QmgZ_J0AAAAJ&hl=ko&oi=sra" target="_blank" rel="noopener">Scholar Profile</a>
+          <a href="https://scholar.google.com/citations?user=QmgZ_J0AAAAJ" target="_blank" rel="noopener">Scholar Profile</a>
         </div>
 
         <div class="kvs">
@@ -59,19 +65,51 @@
 
         <div class="kvs">
           <div class="muted">Location</div>
-          <div>
+          <address style="font-style: normal;">
             Room 204, Engineering Experimental Building,<br>
             College of Engineering, Kyung Hee University,<br>
             1732 Deogyeong-daero, Giheung-gu, Yongin-si,<br>
             Gyeonggi-do, Republic of Korea
-          </div>
+          </address>
         </div>
       </div>
     </section>
   </main>
 
+  <footer class="container" style="color:var(--muted); padding-bottom:24px;">
+    © <span id="year"></span> Jeonghwan Lee.
+  </footer>
+
   <script>
+    // 연도 표시
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 모바일 오프캔버스 메뉴 토글
+    (function(){
+      const btn = document.getElementById('menuBtn');
+      const nav = document.getElementById('sidenav');
+      const overlay = document.getElementById('overlay');
+      if(!btn || !nav || !overlay) return;
+
+      function openNav(){
+        nav.classList.add('open');
+        overlay.hidden = false;
+        document.body.classList.add('menu-open');
+        btn.setAttribute('aria-expanded','true');
+      }
+      function closeNav(){
+        nav.classList.remove('open');
+        overlay.hidden = true;
+        document.body.classList.remove('menu-open');
+        btn.setAttribute('aria-expanded','false');
+      }
+
+      btn.addEventListener('click', ()=> nav.classList.contains('open') ? closeNav() : openNav());
+      overlay.addEventListener('click', closeNav);
+      window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeNav(); });
+      // 메뉴 항목 클릭 시 닫기
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    })();
   </script>
 </body>
 </html>

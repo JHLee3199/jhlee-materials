@@ -6,17 +6,38 @@
   <title>이정환 — Projects</title>
   <meta name="description" content="이정환의 연구 프로젝트: MOOSE-KKS 확장, 계면에너지 추정 등" />
 
-  <!-- Google Fonts (Pretendard 대체 권장) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-  <!-- 절대경로 → 상대경로 -->
+  <!-- Site CSS -->
   <link rel="stylesheet" href="../css/style.css">
+
+  <!-- Page-scoped: Projects grid responsive & small tweaks -->
+  <style>
+    /* 반응형 카드 그리드 */
+    .projects-grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 1100px){
+      .projects-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 680px){
+      .projects-grid{ grid-template-columns: 1fr; }
+    }
+
+    /* 긴 제목 줄바꿈 자연스럽게 */
+    .projects-grid h3{ word-break: keep-all; overflow-wrap: break-word; margin-top: 0; }
+    .projects-grid .list{ margin: 8px 0 0; padding-left: 18px; }
+  </style>
 </head>
 <body>
-  <!-- 좌측 사이드바 (공통) -->
-  <nav id="sidenav" class="sidenav open" aria-label="Primary">
+  <!-- 좌측 사이드바 (데스크톱 고정 / 모바일 오프캔버스) -->
+  <!-- 중요: 모바일에서 강제 오픈 방지 위해 open 클래스 제거 -->
+  <nav id="sidenav" class="sidenav" aria-label="Primary">
     <a href="../">Home</a>
     <a href="../about/">Introduction</a>
     <a href="../research/">Research</a>
@@ -25,35 +46,40 @@
     <a href="../contact/">Contact</a>
   </nav>
 
-  <!-- 상단 바 (공통) -->
+  <!-- 모바일 메뉴 오버레이 -->
+  <div id="overlay" class="overlay" hidden></div>
+
+  <!-- 상단 바 -->
   <header class="topbar">
     <div class="toprow">
+      <!-- 모바일 메뉴 버튼 -->
+      <button class="menu-btn" id="menuBtn" aria-controls="sidenav" aria-expanded="false" aria-label="Open menu">☰</button>
       <div class="brand">Jeonghwan Lee <span class="brand-badge">Projects</span></div>
     </div>
   </header>
 
   <main class="container">
     <section class="section">
-      <div class="two grid">
+      <div class="projects-grid">
         <div class="card">
-          <h3>Nonlinear lattice parameter–concentration relationship using MOOSE framework.</h3>
-          <p class="muted">Phase equilibria, Lattice parameter, Phase-field.</p>
+          <h3>Nonlinear lattice parameter–concentration relationship using the MOOSE framework</h3>
+          <p class="muted">Phase equilibria, lattice parameter, phase-field.</p>
           <ul class="list">
             <li>MOOSE framework</li>
           </ul>
         </div>
 
         <div class="card">
-          <h3>Phase separation and coarsening through spinodal decomposition and nucleation and growth mechanisms</h3>
-          <p class="muted">Phase separation, Coarsening process, Microstructure evolution.</p>
+          <h3>Phase separation and coarsening via spinodal decomposition and nucleation-and-growth</h3>
+          <p class="muted">Phase separation, coarsening, microstructural evolution.</p>
           <ul class="list">
             <li>Fortran, CUDA</li>
           </ul>
         </div>
 
         <div class="card">
-          <h3>Microstructure evolution behavior for stoichiometric and solution phases using the phase-field method</h3>
-          <p class="muted">Microstructure evolution, Stoichiometric compound, Intermetallic phase.</p>
+          <h3>Microstructural evolution of stoichiometric and solution phases using the phase-field method</h3>
+          <p class="muted">Microstructural evolution, intermetallic compounds, stoichiometric phases.</p>
           <ul class="list">
             <li>Fortran, CUDA</li>
           </ul>
@@ -62,8 +88,40 @@
     </section>
   </main>
 
+  <footer class="container" style="color:var(--muted); padding-bottom:24px;">
+    © <span id="year"></span> Jeonghwan Lee.
+  </footer>
+
   <script>
+    // 푸터 연도
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 모바일 오프캔버스 메뉴 토글
+    (function(){
+      const btn = document.getElementById('menuBtn');
+      const nav = document.getElementById('sidenav');
+      const overlay = document.getElementById('overlay');
+      if(!btn || !nav || !overlay) return;
+
+      function openNav(){
+        nav.classList.add('open');
+        overlay.hidden = false;
+        document.body.classList.add('menu-open');
+        btn.setAttribute('aria-expanded','true');
+      }
+      function closeNav(){
+        nav.classList.remove('open');
+        overlay.hidden = true;
+        document.body.classList.remove('menu-open');
+        btn.setAttribute('aria-expanded','false');
+      }
+
+      btn.addEventListener('click', ()=> nav.classList.contains('open') ? closeNav() : openNav());
+      overlay.addEventListener('click', closeNav);
+      window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeNav(); });
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    })();
   </script>
 </body>
 </html>
+
