@@ -185,3 +185,32 @@ p{ margin:0 0 10px; }
   .pub-list.nice > .pub{ grid-template-columns: 2ch 1fr; padding:12px 12px; }
   .pub-title{ font-size:1.02rem; }
 }
+
+/* ===== Publications: PDF link chip ===== */
+.pub-sub { position: relative; } /* 오른쪽 끝 정렬용 안전장치 */
+
+.pdf-link{
+  margin-left: auto;                 /* 두 번째 줄의 맨 오른쪽으로 밀기 */
+  padding: 2px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--surface), #ffffff 4%);
+  color: var(--link, #8ad5ff);
+  text-decoration: none;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  font-weight: 600;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.pdf-link:hover{
+  transform: translateY(-1px);
+  background: color-mix(in oklab, var(--surface), var(--border) 12%);
+  border-color: color-mix(in oklab, var(--border), #ffffff 15%);
+  text-decoration: none;
+}
+.pdf-link::before{
+  content: "⬇︎";
+  margin-right: 6px;
+  font-size: 0.9em;
+  opacity: .9;
+}
