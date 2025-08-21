@@ -23,7 +23,7 @@ body{
   line-height:1.65; letter-spacing:.2px;
 }
 
-/* 본문 컨테이너: 사이드바 폭만큼 오른쪽으로 밀기 */
+/* 본문 컨테이너: 사이드바 폭만큼 오른쪽으로 밀기 (데스크톱) */
 .container{
   max-width: 1120px;
   margin: 0 auto;
@@ -32,14 +32,12 @@ body{
 }
 
 /* ================== Topbar ================== */
-/* 헤더(상단바)는 sticky, 배경 흐림 + 경계선 */
 header{
   position: sticky; top: 0; z-index: 10;
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
   background: color-mix(in oklab, var(--bg), transparent 35%);
 }
-/* 헤더 내부 정렬 + 좌측 패딩을 사이드바 만큼 주어 본문과 정렬 */
 .toprow{
   display:flex; align-items:center; justify-content:space-between; gap:16px;
   padding: 10px 24px;
@@ -58,7 +56,7 @@ header{
 }
 .btn:hover{ transform: translateY(-1px); }
 
-/* ================== Sidebar (항상 보임) ================== */
+/* ================== Sidebar (데스크톱 기본) ================== */
 .sidenav{
   position: fixed;
   top: 0; left: 0; bottom: 0;
@@ -113,104 +111,74 @@ p{ margin:0 0 10px; }
   border-radius:20px; border:1px solid var(--border); display:block; box-shadow:var(--shadow);
 }
 
-/* ================== Publications ================== */
-/* publications 페이지에서 컨테이너 폭 확장 */
+/* ================== Publications (있다면) ================== */
 .container.publications-wide{ max-width: 1200px; }
-
-/* 카드형 번호 리스트 */
-.pub-list.nice{
-  list-style:none; margin:0; padding:0;
-  counter-reset: pub;
-  display:grid; gap:14px;
-}
+.pub-list.nice{ list-style:none; margin:0; padding:0; counter-reset:pub; display:grid; gap:14px; }
 .pub-list.nice > .pub{
-  counter-increment: pub;
-  display:grid;
-  grid-template-columns: 3ch 1fr;  /* 왼쪽 번호, 오른쪽 내용 */
-  gap:10px 14px; align-items:start;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:16px 18px;
-  box-shadow:0 1px 0 rgba(0,0,0,.03);
+  counter-increment:pub; display:grid; grid-template-columns:3ch 1fr; gap:10px 14px; align-items:start;
+  background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; box-shadow:0 1px 0 rgba(0,0,0,.03);
 }
-.pub-list.nice > .pub::before{
-  content: counter(pub) ".";
-  font-weight:700;
-  color:var(--muted);
-  line-height:1.4; padding-top:2px;
-}
-
-/* 1줄: 제목 */
-.pub-title{
-  font-size:1.06rem;
-  font-weight:700;
-  line-height:1.35;
-  letter-spacing:.1px;
-  margin:0 0 2px 0;
-  word-break:keep-all;
-  overflow-wrap:anywhere;
-  color:var(--text);
-}
-
-/* 2줄: 저자 · 저널/권/쪽수 · 연도 */
-.pub-sub{
-  display:flex; flex-wrap:wrap; gap:6px; align-items:baseline;
-  font-size:.96rem; line-height:1.55; color:var(--muted);
-}
+.pub-list.nice > .pub::before{ content:counter(pub) "."; font-weight:700; color:var(--muted); line-height:1.4; padding-top:2px; }
+.pub-title{ font-size:1.06rem; font-weight:700; line-height:1.35; letter-spacing:.1px; margin:0 0 2px 0; word-break:keep-all; overflow-wrap:anywhere; color:var(--text); }
+.pub-sub{ display:flex; flex-wrap:wrap; gap:6px; align-items:baseline; font-size:.96rem; line-height:1.55; color:var(--muted); position:relative; }
 .pub-authors{ color:var(--text); }
 .pub-sub em{ font-style:italic; color:var(--text); }
 .pub-sub .sep{ margin:0 2px; color: color-mix(in oklab, var(--muted), #ffffff 10%); }
-
-/* 연도 배지 */
-.year-badge{
-  display:inline-block; margin-left:8px; padding:2px 8px;
-  border-radius:999px; border:1px solid var(--border);
-  background: color-mix(in oklab, var(--surface), #ffffff 4%);
-  color:var(--text); font-weight:600; font-size:.86rem;
-}
-
-/* 링크 줄(선택) */
-.pub-links{ margin-top:6px; font-size:.92rem; }
-.pub-links a{ color:var(--link); text-decoration:none; }
-.pub-links a:hover{ text-decoration:underline; }
+.year-badge{ display:inline-block; margin-left:8px; padding:2px 8px; border-radius:999px; border:1px solid var(--border); background: color-mix(in oklab, var(--surface), #ffffff 4%); color:var(--text); font-weight:600; font-size:.86rem; }
+.pdf-link{ margin-left:auto; padding:2px 10px; border:1px solid var(--border); border-radius:999px; background: color-mix(in oklab, var(--surface), #ffffff 4%); color:var(--link); text-decoration:none; font-size:.86rem; line-height:1.6; font-weight:600; transition:transform .12s ease, background .12s ease, border-color .12s ease; }
+.pdf-link:hover{ transform:translateY(-1px); background: color-mix(in oklab, var(--surface), var(--border) 12%); border-color: color-mix(in oklab, var(--border), #ffffff 15%); text-decoration:none; }
+.pdf-link::before{ content:"⬇︎"; margin-right:6px; font-size:.9em; opacity:.9; }
 
 /* ================== Responsive ================== */
+/* 데스크톱 → 모바일 공통 축소 */
 @media (max-width: 920px){
-  .container{ margin-left: 16px; } /* 또는 0 */
-  .toprow{ padding-left: 24px; }   /* 헤더도 원래대로 */
+  /* 본문은 좌측 패딩 제거 */
+  .container{ margin-left: 16px; }
+  .toprow{ padding-left: 24px; }
 }
-@media (max-width: 560px){
-  .container.publications-wide{ max-width: 94%; }
+
+/* ======= 여기부터: 모바일 오프캔버스 내비게이션 ======= */
+
+/* 메뉴 버튼(모바일에서만 보이게) */
+.menu-btn{
+  display:none;
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text);
+  padding:8px 12px;
+  border-radius:10px;
+  font-size:18px;
+}
+@media (max-width: 920px){
+  .menu-btn{ display:inline-flex; align-items:center; }
+}
+
+/* 모바일에서 사이드바를 화면 밖에 두었다가 open일 때만 보이게 */
+@media (max-width: 920px){
+  .sidenav{
+    left:-100%;
+    width: min(80vw, 300px);
+    transition:left .28s ease;
+    z-index:1000;
+  }
+  .sidenav.open{ left:0; }
+}
+
+/* 배경 오버레이 */
+.overlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.42);
+  z-index:999;
+  display:block;
+}
+.overlay[hidden]{ display:none; }
+
+/* 메뉴 열렸을 때 바디 스크롤 잠금 */
+body.menu-open{ overflow:hidden; }
+
+/* 작은 화면에서 Publication 카드도 살짝 축소 */
+@media (max-width:560px){
+  .container.publications-wide{ max-width:94%; }
   .pub-list.nice > .pub{ grid-template-columns: 2ch 1fr; padding:12px 12px; }
   .pub-title{ font-size:1.02rem; }
-}
-
-/* ===== Publications: PDF link chip ===== */
-.pub-sub { position: relative; } /* 오른쪽 끝 정렬용 안전장치 */
-
-.pdf-link{
-  margin-left: auto;                 /* 두 번째 줄의 맨 오른쪽으로 밀기 */
-  padding: 2px 10px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--surface), #ffffff 4%);
-  color: var(--link, #8ad5ff);
-  text-decoration: none;
-  font-size: 0.86rem;
-  line-height: 1.6;
-  font-weight: 600;
-  transition: transform .12s ease, background .12s ease, border-color .12s ease;
-}
-.pdf-link:hover{
-  transform: translateY(-1px);
-  background: color-mix(in oklab, var(--surface), var(--border) 12%);
-  border-color: color-mix(in oklab, var(--border), #ffffff 15%);
-  text-decoration: none;
-}
-.pdf-link::before{
-  content: "⬇︎";
-  margin-right: 6px;
-  font-size: 0.9em;
-  opacity: .9;
 }

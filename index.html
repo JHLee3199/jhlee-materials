@@ -6,15 +6,15 @@
   <title>Jeonghwan Lee — Home</title>
   <meta name="description" content="Jeonghwan Lee | Nuclear Engineering — Research overview and skills" />
 
-  <!-- 폰트: Pretendard는 Google Fonts에 공식 등록이 없습니다. Noto Sans KR 등 대체 권장 -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-  <!-- 절대경로 대신 상대경로 -->
+  <!-- Styles -->
   <link rel="stylesheet" href="./css/style.css?v=20250910">
 
-  <!-- 저장된 테마 즉시 적용 (FOUC 방지) -->
+  <!-- Apply saved theme early (avoid FOUC) -->
   <script>
     (function(){
       var saved = localStorage.getItem('theme');
@@ -26,16 +26,9 @@
 </head>
 
 <body>
-  <!-- ===== Top bar ===== -->
-  <header class="topbar">
-    <div class="toprow">
-      <div class="brand">Jeonghwan Lee <span class="brand-badge">Home</span></div>
-    </div>
-  </header>
-
-  <!-- ===== Sidebar nav ===== -->
-  <nav id="sidenav" class="sidenav open" aria-label="Primary">
-    <a id="homeLink" href="./">Home</a>
+  <!-- ===== Sidebar (desktop fixed / mobile off-canvas) ===== -->
+  <nav id="sidenav" class="sidenav" aria-label="Primary">
+    <a id="homeLink" class="active" href="./" aria-current="page">Home</a>
     <a href="./about/">Introduction</a>
     <a href="./research/">Research</a>
     <a href="./publications/">Publications</a>
@@ -43,11 +36,22 @@
     <a href="./contact/">Contact</a>
   </nav>
 
+  <!-- Overlay for mobile menu -->
+  <div id="overlay" class="overlay" hidden></div>
+
+  <!-- ===== Top bar ===== -->
+  <header class="topbar">
+    <div class="toprow">
+      <!-- Mobile menu button -->
+      <button class="menu-btn" id="menuBtn" aria-controls="sidenav" aria-expanded="false" aria-label="Open menu">☰</button>
+      <div class="brand">Jeonghwan Lee <span class="brand-badge">Home</span></div>
+    </div>
+  </header>
+
   <!-- ===== Main ===== -->
   <main class="container">
     <section class="hero">
       <div class="grid">
-        <!-- 이미지 경로도 상대경로 -->
         <img class="avatar" src="./Images/JHLee.jpg" alt="Jeonghwan Lee" />
         <div class="card">
           <div class="kvs">
@@ -78,7 +82,7 @@
 
       <div class="hero-card">
         <h1>Jeonghwan Lee <span class="muted">| Nuclear Engineering</span></h1>
-        <p class="muted">Doctor candidate</p>
+        <p class="muted">Ph.D. candidate</p>
 
         <p>
           Research focuses on thermodynamics and kinetics of microstructural evolution in metallic alloys,
@@ -88,12 +92,12 @@
 
         <h3>Skills &amp; Expertise</h3>
         <ul>
-          <li>Phase-field modeling of microstructure evolution behavior.</li>
+          <li>Phase-field modeling of microstructural evolution.</li>
           <li>Materials science: irradiation effects, phase stability, dislocations.</li>
           <li>Computational thermodynamics &amp; CALPHAD.</li>
           <li>GPU-accelerated large-scale simulations.</li>
-          <li>High-performance computing (MPI, OpenMP, CUDA for parallel computing).</li>
-          <li>Python-based scientific software development (PyQt5 GUI + Fortran backend integration).</li>
+          <li>High-performance computing (MPI, OpenMP, CUDA).</li>
+          <li>Python-based scientific software (PyQt5 GUI + Fortran backend).</li>
         </ul>
 
         <div class="row" style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
@@ -104,19 +108,34 @@
     </section>
   </main>
 
+  <!-- ===== Off-canvas nav toggle ===== -->
   <script>
-    // Sidebar toggle
-    const sidenav = document.getElementById('sidenav');
-    const toggleBtn = document.getElementById('toggleMenu');
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', () => {
-        sidenav.classList.toggle('open');
-      });
-    }
-    // ESC로 닫기
-    window.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') sidenav.classList.remove('open');
-    });
+    (function(){
+      const btn = document.getElementById('menuBtn');
+      const nav = document.getElementById('sidenav');
+      const overlay = document.getElementById('overlay');
+
+      if(!btn || !nav || !overlay) return;
+
+      function openNav(){
+        nav.classList.add('open');
+        overlay.hidden = false;
+        document.body.classList.add('menu-open');
+        btn.setAttribute('aria-expanded','true');
+      }
+      function closeNav(){
+        nav.classList.remove('open');
+        overlay.hidden = true;
+        document.body.classList.remove('menu-open');
+        btn.setAttribute('aria-expanded','false');
+      }
+
+      btn.addEventListener('click', ()=> nav.classList.contains('open') ? closeNav() : openNav());
+      overlay.addEventListener('click', closeNav);
+      window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeNav(); });
+      // Close on nav link click (mobile UX)
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    })();
   </script>
 </body>
 </html>

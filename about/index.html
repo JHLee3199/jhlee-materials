@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jeonghwan Lee — Introduction</title>
   <meta name="description" content="이정환 소개 — 연구 관심 분야와 배경" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=20250910">
 </head>
 <body>
-  <nav class="sidenav" aria-label="Primary">
+  <!-- 고정 사이드바 (데스크톱), 오프캔버스(모바일) -->
+  <nav id="sidenav" class="sidenav" aria-label="Primary">
     <a href="../">Home</a>
     <a class="active" href="./" aria-current="page">Introduction</a>
     <a href="../research/">Research</a>
@@ -21,8 +21,13 @@
     <a href="../contact/">Contact</a>
   </nav>
 
+  <!-- 배경 오버레이 (모바일 메뉴 열릴 때만 표시) -->
+  <div id="overlay" class="overlay" hidden></div>
+
   <header>
     <div class="toprow">
+      <!-- 모바일 전용 메뉴 버튼 -->
+      <button class="menu-btn" id="menuBtn" aria-controls="sidenav" aria-expanded="false" aria-label="Open menu">☰</button>
       <div class="brand">Jeonghwan Lee <span class="brand-badge">Introduction</span></div>
     </div>
   </header>
@@ -31,23 +36,56 @@
     <section class="section">
       <div class="card">
         <h1>Introduction</h1>
-        <p>I am Jeonghwan Lee, a Ph.D. candidate in Nuclear Engineering. <p>
-        <p>My research focuses on phase-field modeling of microstructural evolution in alloys. </p>
 
-        <ul class="timeline">
-          <li><strong>Gimcheon Middle School (2007–2009)</li>
-          <li><strong>Gimcheon Central High School (2010–2012)</li>
-          <li><strong>B.S. in Nuclear Engineering, Kyung Hee University (2013–2019)</li>
-          <li><strong>M.S. in Nuclear Engineering, Kyung Hee University (2020–2021)</li>
-          <li><strong>Ph.D. coursework completed in Nuclear Engineering, Kyung Hee University (Current)</li>
+        <p>
+          I am Jeonghwan Lee, a Ph.D. candidate in Nuclear Engineering. My research focuses on phase-field modeling of microstructural evolution in alloys.
+          Below is a brief overview of my academic background.
+        </p>
+
+        <ul class="kvs" style="margin-top:14px;">
+          <div>Middle School</div><div>Gimcheon Middle School (2007–2009)</div>
+          <div>High School</div><div>Gimcheon Joongang High School (2010–2012)</div>
+          <div>B.S.</div><div>Nuclear Engineering, Kyung Hee University (2013–2019)</div>
+          <div>M.S.</div><div>Nuclear Engineering, Kyung Hee University (2020–2021)</div>
+          <div>Ph.D.</div><div>Coursework completed, Nuclear Engineering, Kyung Hee University (current)</div>
         </ul>
       </div>
     </section>
   </main>
 
   <footer class="container">© <span id="year"></span> Jeonghwan Lee.</footer>
+
   <script>
+    // footer 연도
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 오프캔버스 메뉴 토글
+    (function(){
+      const btn = document.getElementById('menuBtn');
+      const nav = document.getElementById('sidenav');
+      const overlay = document.getElementById('overlay');
+      if(!btn || !nav || !overlay) return;
+
+      function openNav(){
+        nav.classList.add('open');
+        overlay.hidden = false;
+        document.body.classList.add('menu-open');
+        btn.setAttribute('aria-expanded','true');
+      }
+      function closeNav(){
+        nav.classList.remove('open');
+        overlay.hidden = true;
+        document.body.classList.remove('menu-open');
+        btn.setAttribute('aria-expanded','false');
+      }
+
+      btn.addEventListener('click', ()=> nav.classList.contains('open') ? closeNav() : openNav());
+      overlay.addEventListener('click', closeNav);
+      window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeNav(); });
+      // 메뉴 항목 클릭 시 닫기
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    })();
   </script>
 </body>
 </html>
+
