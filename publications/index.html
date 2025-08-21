@@ -5,24 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jeonghwan Lee — Publications</title>
   <meta name="description" content="Publications by Jeonghwan Lee — Nuclear Engineering" />
-
-  <!-- Google Fonts (Pretendard 대체 권장) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-  <!-- 절대경로 → 상대경로 (publications/ 하위에서) -->
+  <!-- 사이트 공통 스타일 -->
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <!-- 상단 바 (theme 버튼 제거, 페이지명 통일) -->
+  <!-- 상단 바 -->
   <header class="topbar">
     <div class="toprow">
       <div class="brand">Jeonghwan Lee <span class="brand-badge">Publications</span></div>
     </div>
   </header>
 
-  <!-- 좌측 사이드바: 상대경로 + 현재 페이지 표시 -->
+  <!-- 좌측 사이드바 -->
   <nav id="sidenav" class="sidenav open" aria-label="Primary">
     <a href="../">Home</a>
     <a href="../about/">Introduction</a>
@@ -33,23 +31,116 @@
   </nav>
 
   <!-- 본문 -->
-  <main class="container">
+  <main class="container publications-wide">
     <section class="section">
       <div class="card">
         <h1>Publications</h1>
 
-        <!-- 예시 아이템 구조 -->
-        <ol class="pub-list">
-          <li>
-            <strong>Author1, Jeonghwan Lee, Author3</strong>,
-            “Title of the paper,” <em>Journal Name</em>, vol. XX, pp. YY–ZZ, 2025.
-            <div class="muted">
-              <a href="https://doi.org/xxxx" target="_blank" rel="noopener">DOI</a>
-              · <a href="./paper1.pdf" target="_blank" rel="noopener">PDF</a>
-              · <a href="./bib/paper1.bib" download>BibTeX</a>
+        <!-- 두 줄 레이아웃: 1줄 제목 / 2줄 메타 -->
+        <ol class="pub-list nice">
+
+          <li class="pub">
+            <div class="pub-body">
+              <div class="pub-title">
+                Nonlinear lattice parameter–concentration relationship and its role in microstructural evolution of alloys
+              </div>
+              <div class="pub-sub">
+                <span class="pub-authors"><strong>J Lee</strong>, Y Li, S Hu, K Chang</span>
+                <span class="sep">·</span>
+                <em>Physica B: Condensed Matter</em>
+                <span class="sep">·</span> 417289
+                <span class="year-badge">2025</span>
+              </div>
             </div>
           </li>
-          <!-- 필요한 만큼 추가 -->
+
+          <li class="pub">
+            <div class="pub-body">
+              <div class="pub-title">
+                Performance Benchmark of Cahn–Hilliard Equation Solver with Implementation of Semi-implicit Fourier Spectral Method
+              </div>
+              <div class="pub-sub">
+                <span class="pub-authors">I Cho, <strong>J Lee</strong>, K Chang</span>
+                <span class="sep">·</span>
+                <em>Korean Journal of Chemical Engineering</em>
+                <span class="sep">·</span> vol. 41 (8), pp. 2423–2432
+                <span class="year-badge">2024</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub">
+            <div class="pub-body">
+              <div class="pub-title">
+                Phase Separation Behavior of Fe–Cr System Including &alpha;, &alpha;&prime;, and &sigma; Phases Using Phase-Field Modeling
+              </div>
+              <div class="pub-sub">
+                <span class="pub-authors"><strong>J Lee</strong>, K Chang</span>
+                <span class="sep">·</span>
+                <em>Materials Transactions</em>
+                <span class="sep">·</span> vol. 63 (10), pp. 1332–1336
+                <span class="year-badge">2022</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub">
+            <div class="pub-body">
+              <div class="pub-title">
+                Effect of Al concentration on the microstructural evolution of Fe–Cr–Al systems: A phase-field approach
+              </div>
+              <div class="pub-sub">
+                <span class="pub-authors"><strong>J Lee</strong>, K Park, K Chang</span>
+                <span class="sep">·</span>
+                <em>Metals</em>
+                <span class="sep">·</span> vol. 11 (1), 4
+                <span class="year-badge">2020</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub">
+            <div class="pub-body">
+              <div class="pub-title">
+                The Effects of Inhomogeneous Elasticity and Dislocation on Thermodynamics and the Kinetics of the Spinodal Decomposition of a Fe–Cr System: A Phase-Field Study
+              </div>
+              <div class="pub-sub">
+                <span class="pub-authors">W Shin, <strong>J Lee</strong>, K Chang</span>
+                <span class="sep">·</span>
+                <em>Metals</em>
+                <span class="sep">·</span> vol. 10 (9), 1209
+                <span class="year-badge">2020</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub">
+            <div class="pub-body">
+              <div class="pub-title">
+                Effect of magnetic ordering on the spinodal decomposition of the Fe–Cr system: A GPU-accelerated phase-field study
+              </div>
+              <div class="pub-sub">
+                <span class="pub-authors"><strong>J Lee</strong>, K Chang</span>
+                <span class="sep">·</span>
+                <em>Computational Materials Science</em>
+                <span class="sep">·</span> 169, 109808
+                <span class="year-badge">2019</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub">
+            <div class="pub-body">
+              <div class="pub-title">
+                Investigation of Neutron-Irradiated Microstructure of Fe–Cr System: A GPU Accelerated Phase-field method
+              </div>
+              <div class="pub-sub">
+                <span class="pub-authors"><strong>J Lee</strong>, K Chang</span>
+                <span class="year-badge">2020</span>
+              </div>
+            </div>
+          </li>
+
         </ol>
       </div>
 
@@ -59,7 +150,6 @@
     </section>
   </main>
 
-  <!-- 최소 스크립트 -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>

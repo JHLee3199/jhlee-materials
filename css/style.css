@@ -91,7 +91,7 @@ header{
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 16px 28px 28px;
-  box-shadow: var(--shadow);
+  box-shadow:var(--shadow);
   height:auto; max-height:none; overflow:visible;
 }
 
@@ -113,8 +113,75 @@ p{ margin:0 0 10px; }
   border-radius:20px; border:1px solid var(--border); display:block; box-shadow:var(--shadow);
 }
 
+/* ================== Publications ================== */
+/* publications 페이지에서 컨테이너 폭 확장 */
+.container.publications-wide{ max-width: 1200px; }
+
+/* 카드형 번호 리스트 */
+.pub-list.nice{
+  list-style:none; margin:0; padding:0;
+  counter-reset: pub;
+  display:grid; gap:14px;
+}
+.pub-list.nice > .pub{
+  counter-increment: pub;
+  display:grid;
+  grid-template-columns: 3ch 1fr;  /* 왼쪽 번호, 오른쪽 내용 */
+  gap:10px 14px; align-items:start;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px 18px;
+  box-shadow:0 1px 0 rgba(0,0,0,.03);
+}
+.pub-list.nice > .pub::before{
+  content: counter(pub) ".";
+  font-weight:700;
+  color:var(--muted);
+  line-height:1.4; padding-top:2px;
+}
+
+/* 1줄: 제목 */
+.pub-title{
+  font-size:1.06rem;
+  font-weight:700;
+  line-height:1.35;
+  letter-spacing:.1px;
+  margin:0 0 2px 0;
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+  color:var(--text);
+}
+
+/* 2줄: 저자 · 저널/권/쪽수 · 연도 */
+.pub-sub{
+  display:flex; flex-wrap:wrap; gap:6px; align-items:baseline;
+  font-size:.96rem; line-height:1.55; color:var(--muted);
+}
+.pub-authors{ color:var(--text); }
+.pub-sub em{ font-style:italic; color:var(--text); }
+.pub-sub .sep{ margin:0 2px; color: color-mix(in oklab, var(--muted), #ffffff 10%); }
+
+/* 연도 배지 */
+.year-badge{
+  display:inline-block; margin-left:8px; padding:2px 8px;
+  border-radius:999px; border:1px solid var(--border);
+  background: color-mix(in oklab, var(--surface), #ffffff 4%);
+  color:var(--text); font-weight:600; font-size:.86rem;
+}
+
+/* 링크 줄(선택) */
+.pub-links{ margin-top:6px; font-size:.92rem; }
+.pub-links a{ color:var(--link); text-decoration:none; }
+.pub-links a:hover{ text-decoration:underline; }
+
 /* ================== Responsive ================== */
 @media (max-width: 920px){
   .container{ margin-left: 16px; } /* 또는 0 */
-  .toprow{ padding-left: 24px; }  // 헤더도 원래대로 */
+  .toprow{ padding-left: 24px; }   /* 헤더도 원래대로 */
+}
+@media (max-width: 560px){
+  .container.publications-wide{ max-width: 94%; }
+  .pub-list.nice > .pub{ grid-template-columns: 2ch 1fr; padding:12px 12px; }
+  .pub-title{ font-size:1.02rem; }
 }
