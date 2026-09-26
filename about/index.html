@@ -1,91 +1,67 @@
-<!DOCTYPE html>
-<html lang="ko" data-theme="light">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jeonghwan Lee — Introduction</title>
-  <meta name="description" content="이정환 소개 — 연구 관심 분야와 배경" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20250910">
-</head>
-<body>
-  <!-- 고정 사이드바 (데스크톱), 오프캔버스(모바일) -->
-  <nav id="sidenav" class="sidenav" aria-label="Primary">
-    <a href="../">Home</a>
-    <a class="active" href="./" aria-current="page">Introduction</a>
-    <a href="../research/">Research</a>
-    <a href="../publications/">Publications</a>
-    <a href="../projects/">Projects</a>
-    <a href="../contact/">Contact</a>
-  </nav>
-
-  <!-- 배경 오버레이 (모바일 메뉴 열릴 때만 표시) -->
-  <div id="overlay" class="overlay" hidden></div>
-
-  <header>
-    <div class="toprow">
-      <!-- 모바일 전용 메뉴 버튼 -->
-      <button class="menu-btn" id="menuBtn" aria-controls="sidenav" aria-expanded="false" aria-label="Open menu">☰</button>
-      <div class="brand">Jeonghwan Lee <span class="brand-badge">Introduction</span></div>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="section">
-      <div class="card">
-        <h1>Introduction</h1>
-
-        <p>
-          I am Jeonghwan Lee, a Ph.D. candidate in Nuclear Engineering. My research focuses on phase-field modeling of microstructural evolution in alloys.
-          Below is a brief overview of my academic background.
-        </p>
-
-        <ul class="kvs" style="margin-top:14px;">
-          <div>Middle School</div><div>Gimcheon Middle School (2007–2009)</div>
-          <div>High School</div><div>Gimcheon Joongang High School (2010–2012)</div>
-          <div>B.S.</div><div>Nuclear Engineering, Kyung Hee University (2013–2019)</div>
-          <div>M.S.</div><div>Nuclear Engineering, Kyung Hee University (2020–2021)</div>
-          <div>Ph.D.</div><div>Coursework completed, Nuclear Engineering, Kyung Hee University (current)</div>
-        </ul>
-      </div>
-    </section>
-  </main>
-
-  <footer class="container">© <span id="year"></span> Jeonghwan Lee.</footer>
-
-  <script>
-    // footer 연도
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // 오프캔버스 메뉴 토글
-    (function(){
-      const btn = document.getElementById('menuBtn');
-      const nav = document.getElementById('sidenav');
-      const overlay = document.getElementById('overlay');
-      if(!btn || !nav || !overlay) return;
-
-      function openNav(){
-        nav.classList.add('open');
-        overlay.hidden = false;
-        document.body.classList.add('menu-open');
-        btn.setAttribute('aria-expanded','true');
-      }
-      function closeNav(){
-        nav.classList.remove('open');
-        overlay.hidden = true;
-        document.body.classList.remove('menu-open');
-        btn.setAttribute('aria-expanded','false');
-      }
-
-      btn.addEventListener('click', ()=> nav.classList.contains('open') ? closeNav() : openNav());
-      overlay.addEventListener('click', closeNav);
-      window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeNav(); });
-      // 메뉴 항목 클릭 시 닫기
-      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
-    })();
-  </script>
-</body>
-</html>
-
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Academic background and research interests of Jeonghwan Lee."><title>Introduction | Jeonghwan Lee</title><link rel="stylesheet" href="../css/style.css?v=20260926-about-photo"></head><body>
+<nav class="sidenav" id="sidenav" aria-label="Primary navigation"><a class="nav-brand" href="../">Jeonghwan Lee<small>Computational materials research</small></a><div class="nav-links"><a href="../">Home</a><a href="../about/" class="active" aria-current="page">Introduction</a><a href="../research/">Research</a><a href="../publications/">Publications</a><a href="../projects/">Projects</a><a href="../contact/">Contact</a></div><div class="nav-foot">Kyung Hee University<br>Republic of Korea</div></nav><div class="overlay" id="overlay" hidden></div><div class="shell"><header class="topbar"><a class="brand" href="../">Jeonghwan Lee</a><button class="menu-btn" id="menuBtn" aria-controls="sidenav" aria-expanded="false" aria-label="Open navigation">☰</button></header><main class="container"><section class="page-head intro-overview"><div class="intro-copy"><span class="eyebrow">Introduction</span><h1>Computational modeling of nuclear materials</h1><p class="lead">Computational investigation of phase transformations and microstructural evolution in alloys for nuclear energy applications.</p></div><figure class="research-orbit">
+<svg viewBox="0 0 360 350" role="img" aria-labelledby="orbit-title orbit-desc" xmlns="http://www.w3.org/2000/svg">
+<title id="orbit-title">Nuclear engineering, nuclear materials, and computational modeling</title>
+<desc id="orbit-desc">Nested circles locate nuclear materials within nuclear engineering, with modeling and simulation as the research approach. The small microstructure is a conceptual illustration, not simulation data.</desc>
+<circle cx="180" cy="170" r="163" fill="#f0f5f1" stroke="#c1d4c8"/>
+<circle cx="180" cy="205" r="121" fill="#e1eee6" stroke="#aac9b6"/>
+<circle cx="180" cy="238" r="81" fill="#cee3d6" stroke="#8bb49d"/>
+<g font-family="'DM Sans',Arial,sans-serif" text-anchor="middle" fill="#25463a" font-weight="600">
+<text x="180" y="55" font-size="19">Nuclear engineering</text>
+<text x="180" y="127" font-size="18">Nuclear materials</text>
+<text x="180" y="206" font-size="16">Modeling &amp;</text><text x="180" y="228" font-size="16">simulation</text>
+</g>
+<defs><clipPath id="microstructure-clip"><circle cx="180" cy="269" r="23"/></clipPath></defs>
+<g clip-path="url(#microstructure-clip)" stroke="#edf5ef" stroke-width="1.5" opacity=".65">
+<path d="M155 243H179L185 262 168 273 155 263Z" fill="#8eb59e"/>
+<path d="M179 243H205V269L185 262Z" fill="#65927b"/>
+<path d="M155 263L168 273 175 296H153Z" fill="#6f9b81"/>
+<path d="M168 273L185 262 205 269 193 291 175 296Z" fill="#a2c6ae"/>
+<path d="M193 291L205 269V296H175Z" fill="#759f86"/>
+</g>
+</svg>
+<figcaption>Research focus · Conceptual illustration</figcaption>
+</figure></section><section class="section background-layout"><div class="background-copy"><h2>Background</h2><p class="lead">Ph.D. candidate in Nuclear Engineering at Kyung Hee University. Research experience spans phase transformations in Fe- and Ni-based systems, irradiation-related microstructures and phase-field modeling of stoichiometric compounds. Software development experience also includes radiation dose assessment programs with graphical user interfaces.</p><div class="timeline"><div class="timeline-row"><strong>Ph.D.</strong><p>Nuclear Engineering, Kyung Hee University · coursework completed; doctoral research in progress</p></div><div class="timeline-row"><strong>2020–2021</strong><p>M.S. in Nuclear Engineering, Kyung Hee University</p></div><div class="timeline-row"><strong>2013–2019</strong><p>B.S. in Nuclear Engineering, Kyung Hee University</p></div></div></div><figure class="background-portrait">
+  <div class="about-photo-placeholder" role="img" aria-label="Profile photo placeholder for Jeonghwan Lee"><span>JL</span><small>Profile photo</small></div>
+  <!-- Replace the placeholder with: <img class="about-photo" src="../Images/profile.jpg" alt="Jeonghwan Lee"> -->
+  <figcaption><strong>Jeonghwan Lee</strong><span>Nuclear Engineering<br>Kyung Hee University</span></figcaption>
+</figure></section><section class="section experience-section" aria-labelledby="experience-title">
+  <span class="eyebrow">Research &amp; development</span>
+  <h2 id="experience-title">Research &amp; technical experience</h2>
+  <p class="lead">From thermodynamic descriptions and numerical models to simulation codes and assessment software.</p>
+  <div class="experience-grid">
+    <article class="experience-card experience-models">
+      <div class="experience-top"><span class="eyebrow">Model development</span></div>
+      <h3>Multicomponent phase-field modeling</h3>
+      <p>Model development for coupled diffusion and phase transformations involving solution phases and stoichiometric compounds.</p>
+      <p class="experience-detail">Current work addresses reaction extent and solution-phase composition relaxation in ternary multiphase systems.</p>
+      <ul class="experience-tags" aria-label="Modeling topics"><li>Multiphase systems</li><li>Reaction extent</li><li>Compound formation</li></ul>
+    </article>
+    <article class="experience-card experience-thermo">
+      <div class="experience-top"><span class="eyebrow">Physical foundations</span></div>
+      <h3>Thermodynamics &amp; phase transformations</h3>
+      <p>Free-energy descriptions and chemical potentials for studying phase separation, diffusion and competition between phases.</p>
+      <p class="experience-detail">Previous studies include magnetic and elastic effects on microstructural evolution in Fe-based alloys.</p>
+      <ul class="experience-tags" aria-label="Thermodynamics topics"><li>Free energy</li><li>Phase equilibria</li><li>Spinodal decomposition</li></ul>
+    </article>
+    <article class="experience-card experience-computing">
+      <div class="experience-top"><span class="eyebrow">Scientific computing</span></div>
+      <h3>Numerical methods &amp; GPU acceleration</h3>
+      <p>Implementation of phase-field simulations using Fortran, CUDA and parallel computing methods.</p>
+      <p class="experience-detail">Experience includes semi-implicit Fourier spectral methods, solver benchmarking and Python-based analysis.</p>
+      <ul class="experience-tags" aria-label="Computing tools"><li>Fortran</li><li>CUDA</li><li>Python</li><li>Fourier spectral methods</li></ul>
+    </article>
+    <article class="experience-card experience-materials">
+      <div class="experience-top"><span class="eyebrow">Materials applications</span></div>
+      <h3>Alloy microstructures &amp; nuclear materials</h3>
+      <p>Phase separation and microstructural evolution in Fe–Cr and Fe–Cr–Al alloys, alongside telluride formation in Ni–Cr–Te.</p>
+      <p class="experience-detail">Applications span irradiation-related microstructures and structural materials for molten salt reactors.</p>
+      <ul class="experience-tags" aria-label="Material systems"><li>Fe–Cr</li><li>Fe–Cr–Al</li><li>Ni–Cr–Te</li></ul>
+    </article>
+  </div>
+  <article class="assessment-feature" aria-labelledby="assessment-title">
+    <div class="assessment-heading"><span class="eyebrow">Software development</span><h3 id="assessment-title">Radiation dose assessment<br>&amp; GUI applications</h3><p>Experience developing radiation dose assessment software and using graphical interfaces to carry out assessments.</p></div>
+    <div class="assessment-details"><div><span class="assessment-index">01</span><div><h4>Assessment software</h4><p>Program development for radiation dose assessment.</p></div></div><div><span class="assessment-index">02</span><div><h4>Graphical user interfaces</h4><p>GUI-based interaction with the assessment program.</p></div></div><div><span class="assessment-index">03</span><div><h4>Applied assessment</h4><p>Experience conducting dose assessments through a graphical interface.</p></div></div></div>
+  </article>
+  <div class="experience-links"><a class="btn secondary" href="../projects/">Research projects</a><a class="card-link" href="../publications/">Related publications →</a></div>
+</section></main><footer class="footer container">© <span data-year></span> Jeonghwan Lee</footer></div><script src="../js/site.js" defer></script></body></html>

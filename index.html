@@ -1,141 +1,59 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jeonghwan Lee — Home</title>
-  <meta name="description" content="Jeonghwan Lee | Nuclear Engineering — Research overview and skills" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="./css/style.css?v=20250910">
-
-  <!-- Apply saved theme early (avoid FOUC) -->
-  <script>
-    (function(){
-      var saved = localStorage.getItem('theme');
-      if(saved === 'dark' || saved === 'light'){
-        document.documentElement.setAttribute('data-theme', saved);
-      }
-    })();
-  </script>
-</head>
-
-<body>
-  <!-- ===== Sidebar (desktop fixed / mobile off-canvas) ===== -->
-  <nav id="sidenav" class="sidenav" aria-label="Primary">
-    <a id="homeLink" class="active" href="./" aria-current="page">Home</a>
-    <a href="./about/">Introduction</a>
-    <a href="./research/">Research</a>
-    <a href="./publications/">Publications</a>
-    <a href="./projects/">Projects</a>
-    <a href="./contact/">Contact</a>
-  </nav>
-
-  <!-- Overlay for mobile menu -->
-  <div id="overlay" class="overlay" hidden></div>
-
-  <!-- ===== Top bar ===== -->
-  <header class="topbar">
-    <div class="toprow">
-      <!-- Mobile menu button -->
-      <button class="menu-btn" id="menuBtn" aria-controls="sidenav" aria-expanded="false" aria-label="Open menu">☰</button>
-      <div class="brand">Jeonghwan Lee <span class="brand-badge">Home</span></div>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Jeonghwan Lee — computational materials research, phase-field modeling, alloy phase transformations and GPU-accelerated simulation."><title>Home | Jeonghwan Lee</title><link rel="stylesheet" href="./css/style.css?v=20260926-manuscripts"></head><body>
+<nav class="sidenav" id="sidenav" aria-label="Primary navigation"><a class="nav-brand" href="./">Jeonghwan Lee<small>Computational materials research</small></a><div class="nav-links"><a href="./" class="active" aria-current="page">Home</a><a href="./about/">Introduction</a><a href="./research/">Research</a><a href="./publications/">Publications</a><a href="./projects/">Projects</a><a href="./contact/">Contact</a></div><div class="nav-foot">Kyung Hee University<br>Republic of Korea</div></nav><div class="overlay" id="overlay" hidden></div><div class="shell"><header class="topbar"><a class="brand" href="./">Jeonghwan Lee</a><button class="menu-btn" id="menuBtn" aria-controls="sidenav" aria-expanded="false" aria-label="Open navigation">☰</button></header><main class="container">
+<section class="hero research-hero profile-hero" aria-labelledby="profile-title">
+  <div class="hero-copy">
+    <span class="eyebrow">Computational materials research</span>
+    <div class="profile-identity">
+      <div class="portrait-placeholder" role="img" aria-label="Profile photo placeholder"><span class="portrait-initials" aria-hidden="true">JL</span><span>Profile photo</span></div>
+      <!-- Replace the placeholder above with: <img class="profile-portrait" src="./Images/profile.jpg" alt="Jeonghwan Lee"> -->
+      <div><h1 id="profile-title">Jeonghwan Lee</h1><p class="profile-role">Ph.D. candidate in Nuclear Engineering<br>Kyung Hee University</p></div>
     </div>
-  </header>
+    <h2 class="profile-field">Phase transformations &amp;<br>microstructural evolution</h2>
+    <p class="lead">Research in phase-field modeling, computational thermodynamics and high-performance computing, with applications to phase separation, compound formation and nuclear materials.</p>
+    <div class="actions"><a class="btn" href="./about/">Academic background</a><a class="btn secondary" href="./publications/">Publications</a></div>
+  </div>
+  <aside class="focus-panel profile-panel" aria-labelledby="overview-title">
+    <span class="eyebrow">Research overview</span>
+    <h2 id="overview-title">Models, materials<br>and computation</h2>
+    <dl class="profile-topics">
+      <div><dt>Phase-field modeling</dt><dd>Phase separation, multicomponent systems and stoichiometric compounds.</dd></div>
+      <div><dt>Alloy microstructures</dt><dd>Fe–Cr and Fe–Cr–Al phase transformations; telluride formation in Ni–Cr–Te.</dd></div>
+      <div><dt>Scientific computing</dt><dd>GPU-accelerated simulations, numerical methods, CUDA and Fortran.</dd></div>
+    </dl>
+    <a class="card-link" href="./research/">Research areas <span aria-hidden="true">→</span></a>
+  </aside>
+</section>
+<section class="section">
+  <span class="eyebrow">Research experience</span>
+  <h2>Phase transformations across alloy systems</h2>
+  <div class="grid three">
+    <article class="card"><div class="number">01 / PHASE SEPARATION</div><h3>Alloy phase transformations</h3><p class="muted">Phase separation and microstructural evolution in Fe–Cr and Fe–Cr–Al alloys, alongside current research on telluride formation in Ni–Cr–Te.</p></article>
+    <article class="card"><div class="number">02 / MODEL DEVELOPMENT</div><h3>Multicomponent systems</h3><p class="muted">Phase-field formulations coupling thermodynamics and diffusion, with solution phases and stoichiometric compounds.</p></article>
+    <article class="card"><div class="number">03 / NUMERICAL METHODS</div><h3>Accelerated simulation</h3><p class="muted">GPU computing and semi-implicit Fourier spectral methods for simulations of microstructural evolution.</p></article>
+  </div>
+</section>
+<section class="section current-research">
+  <div><span class="eyebrow">Current research</span><h2>Stoichiometric compound formation</h2></div>
+  <div><p class="lead">Multicomponent, multiphase phase-field modeling of compound formation, with a current application to tellurides in Ni–Cr–Te.</p><p class="muted">The work examines how local composition, diffusion and competition between phases influence telluride formation in Ni–Cr alloys exposed to tellurium.</p><a class="card-link" href="./projects/">Current projects <span aria-hidden="true">→</span></a></div>
+</section>
 
-  <!-- ===== Main ===== -->
-  <main class="container">
-    <section class="hero">
-      <div class="grid">
-        <img class="avatar" src="./Images/JHLee.jpg" alt="Jeonghwan Lee" />
-        <div class="card">
-          <div class="kvs">
-            <div class="muted">E-mail</div>
-            <a href="mailto:jeonghwan.lee@khu.ac.kr">jeonghwan.lee@khu.ac.kr</a>
-          </div>
-          <div class="kvs">
-            <div class="muted">Google Scholar</div>
-            <a href="https://scholar.google.com/citations?user=QmgZ_J0AAAAJ" target="_blank" rel="noopener">Research Profile</a>
-          </div>
-          <div class="kvs">
-            <div class="muted">GitHub</div>
-            <a href="https://github.com/JHLee3199" target="_blank" rel="noopener">JHLee3199</a>
-          </div>
-          <div class="kvs">
-            <div class="muted">Phone</div>
-            <div>+82-10-5567-3199</div>
-          </div>
-          <div class="kvs">
-            <div class="muted">Location</div>
-            <div>
-              Room 204, Engineering Experimental Building<br>
-              Kyung Hee University, Yongin, Republic of Korea
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <h1>Jeonghwan Lee <span class="muted">| Nuclear Engineering</span></h1>
-        <p class="muted">Ph.D. candidate</p>
-
-        <p>
-          Research focuses on thermodynamics and kinetics of microstructural evolution in metallic alloys,
-          using phase-field simulations combined with high-performance computing to investigate
-          phase separation, irradiation damage, and microstructural stability.
-        </p>
-
-        <h3>Skills &amp; Expertise</h3>
-        <ul>
-          <li>Phase-field modeling of microstructural evolution.</li>
-          <li>Materials science: irradiation effects, phase stability, dislocations.</li>
-          <li>Computational thermodynamics &amp; CALPHAD.</li>
-          <li>GPU-accelerated large-scale simulations.</li>
-          <li>High-performance computing (MPI, OpenMP, CUDA).</li>
-          <li>Python-based scientific software (PyQt5 GUI + Fortran backend).</li>
-        </ul>
-
-        <div class="row" style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="btn" href="./contact/">Contact</a>
-          <a class="btn" href="./cv.pdf" download>CV Download (PDF)</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ===== Off-canvas nav toggle ===== -->
-  <script>
-    (function(){
-      const btn = document.getElementById('menuBtn');
-      const nav = document.getElementById('sidenav');
-      const overlay = document.getElementById('overlay');
-
-      if(!btn || !nav || !overlay) return;
-
-      function openNav(){
-        nav.classList.add('open');
-        overlay.hidden = false;
-        document.body.classList.add('menu-open');
-        btn.setAttribute('aria-expanded','true');
-      }
-      function closeNav(){
-        nav.classList.remove('open');
-        overlay.hidden = true;
-        document.body.classList.remove('menu-open');
-        btn.setAttribute('aria-expanded','false');
-      }
-
-      btn.addEventListener('click', ()=> nav.classList.contains('open') ? closeNav() : openNav());
-      overlay.addEventListener('click', closeNav);
-      window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeNav(); });
-      // Close on nav link click (mobile UX)
-      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
-    })();
-  </script>
-</body>
-</html>
+<section class="section">
+  <span class="eyebrow">Selected publications</span>
+  <h2>Published research</h2>
+  <div class="selected-papers">
+    <article><span class="paper-year">2025</span><div><h3>Nonlinear lattice parameter–concentration relationship and its role in microstructural evolution of alloys</h3><p class="muted">J Lee, Y Li, S Hu, K Chang · <em>Physica B: Condensed Matter</em></p><a href="./papers/lee_2025_nonlinear_lattice.pdf">Read paper (PDF)</a></div></article>
+    <article><span class="paper-year">2020</span><div><h3>Effect of Al concentration on the microstructural evolution of Fe–Cr–Al systems: A phase-field approach</h3><p class="muted">J Lee, K Park, K Chang · <em>Metals</em></p><a href="./papers/lee_park_chang_2020_fecral.pdf">Read paper (PDF)</a></div></article>
+    <article><span class="paper-year">2019</span><div><h3>Effect of magnetic ordering on the spinodal decomposition of the Fe–Cr system: A GPU-accelerated phase-field study</h3><p class="muted">J Lee, K Chang · <em>Computational Materials Science</em></p><a href="./papers/lee_chang_2019_gpu_spinodal.pdf">Read paper (PDF)</a></div></article>
+  </div>
+  <a class="btn secondary" href="./publications/">All publications</a>
+</section>
+<section class="section" aria-labelledby="manuscripts-title">
+  <span class="eyebrow">Ongoing work</span>
+  <h2 id="manuscripts-title">Manuscripts in preparation</h2>
+  <div class="selected-papers manuscripts-list">
+    <article><span class="paper-year manuscript-status">In preparation</span><div><h3>Reaction Extent Phase-Field Model with Solution Phase Composition Relaxation for Ternary Stoichiometric Multiphase Systems</h3></div></article>
+    <article><span class="paper-year manuscript-status">In preparation</span><div><h3>GPU‑Accelerated Phase‑Field Simulation of Stoichiometric Telluride Formation in Ni–Cr–Te Systems for Molten Salt Reactor Structural Materials</h3></div></article>
+  </div>
+</section>
+<section class="section"><span class="eyebrow">Contact</span><h2>Research correspondence</h2><p class="lead">Contact information and academic profiles.</p><a class="btn secondary" href="./contact/">Contact &amp; profiles</a></section>
+</main><footer class="footer container">© <span data-year></span> Jeonghwan Lee</footer></div><script src="./js/site.js" defer></script></body></html>
