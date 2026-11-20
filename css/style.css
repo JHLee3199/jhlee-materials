@@ -100,3 +100,28 @@
   font-weight: 700;
   font-size: 0.89rem;
 }
+
+.project-study .project-facts,
+.project-study .project-facts dt:first-child {
+  margin-top: 0;
+}
+.project-figures {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: 56rem;
+}
+#reaction-extent .project-figures {
+  max-width: none;
+}
+#tellurides .additional-figure figure {
+  max-width: 700px;
+  margin-inline: auto;
+}
+.paper-figure video {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: white;
+  border: 1px solid var(--line);
+}
