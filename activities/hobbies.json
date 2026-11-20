@@ -1,0 +1,51 @@
+[
+  {
+    "slug": "cooking-baking",
+    "name": "Cooking & baking",
+    "format": "Recipes, baking notes & photos",
+    "collections": [
+      {"slug": "cooking", "name": "Cooking", "photos": true, "entries": []},
+      {"slug": "baking", "name": "Baking", "photos": true, "entries": []}
+    ]
+  },
+  {
+    "slug": "guitar",
+    "name": "Guitar",
+    "format": "Photos, repertoire & recordings",
+    "photos": true,
+    "entries": []
+  },
+  {
+    "slug": "reading",
+    "name": "Reading",
+    "format": "Book reviews & ratings",
+    "entries": []
+  },
+  {
+    "slug": "walking",
+    "name": "Walking",
+    "format": "Routes & photos from walks",
+    "photos": true,
+    "entries": []
+  },
+  {
+    "slug": "fitness",
+    "name": "Gym",
+    "format": "Workout reflections & ratings",
+    "entries": []
+  },
+  {
+    "slug": "plants",
+    "name": "Plant care",
+    "format": "Growth photos & care notes",
+    "photos": true,
+    "entries": []
+  },
+  {
+    "slug": "web-design",
+    "name": "Coding",
+    "format": "Project demos & source code",
+    "shareLinks": true,
+    "entries": []
+  }
+]
