@@ -58,3 +58,45 @@
 @media(max-width:1100px){.direction-row,.project-study{gap:28px}.media-placeholder{padding:20px;min-height:230px}.media-placeholder strong{font-size:1.05rem}}
 @media(max-width:800px){.direction-row,.project-study{grid-template-columns:1fr;gap:24px}.project-media{width:100%;max-width:620px}.research-next{align-items:start;flex-direction:column}}
 @media(max-width:610px){.material-comparison{grid-template-columns:1fr;gap:12px}.direction-row h2 br,.project-copy h2 br{display:none}.project-copy h2,.direction-row h2{font-size:1.65rem}.media-placeholder{min-height:220px}.project-nav{gap:12px 20px}.direction-content .direction-question{font-size:1.08rem}}
+
+/* Full figures retain the panel labels and scales from each paper. */
+.project-figures,
+.paper-figure {
+  min-width: 0;
+}
+.paper-figure {
+  margin: 0;
+}
+.paper-figure > a {
+  display: block;
+  cursor: zoom-in;
+}
+.paper-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  background: white;
+}
+.paper-figure figcaption {
+  margin: 12px 0 0;
+  line-height: 1.55;
+  font-size: 0.91rem;
+}
+.paper-figure small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.77rem;
+  color: var(--muted);
+}
+.additional-figure {
+  margin-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.additional-figure summary {
+  padding: 12px 0;
+  cursor: pointer;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 0.89rem;
+}
