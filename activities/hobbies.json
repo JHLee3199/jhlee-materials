@@ -29,6 +29,13 @@
     "entries": []
   },
   {
+    "slug": "travel",
+    "name": "Travel",
+    "format": "Photo albums by region",
+    "photosByRegion": true,
+    "entries": []
+  },
+  {
     "slug": "fitness",
     "name": "Gym",
     "format": "Workout reflections & ratings",

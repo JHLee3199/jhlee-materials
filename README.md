@@ -32,7 +32,15 @@ For a guitar piece, add a `recording` URL to show an audio player. For a coding 
 
 Cooking and Baking appear together on the page. They each have an `entries` list inside `collections` and their own photo folder. Add photos under `activities/photos/` in `cooking/`, `baking/`, `guitar/`, `walking/` or `plants/`. Descriptive filenames provide the image labels.
 
-Run `node scripts/build-hobby-albums.mjs` from the repository root after updating entries or media. It refreshes the Hobbies section of `activities/index.html`. A hobby becomes expandable when its first entry or photo is available.
+For Travel, create one folder per region under `activities/photos/travel/`. For example, `activities/photos/travel/제주/성산 일출.jpg` appears under **Travel → 제주**. Use the region name as you want it displayed. Each region appears once it contains a photo.
+
+Run `node scripts/build-hobby-albums.mjs` from the repository root after updating entries or media. It refreshes `activities/hobbies.html`. A hobby becomes expandable when its first entry or photo is available.
+
+Store local hobby recordings and downloadable files under `activities/hobby-media/`.
+
+## Search visibility
+
+Visitors can open the site directly using its URL. Each HTML page includes a robots meta tag, and Netlify serves every static file with `X-Robots-Tag: noindex` using the root `_headers` file. This also covers PDFs, photos and videos. The root `robots.txt` allows crawlers to fetch these resources and read the directive.
 
 ## Conference photos
 

@@ -18,7 +18,7 @@
   border-bottom: 3px solid transparent;
 }
 .activity-tabs a:hover,
-.activity-tabs a[aria-selected="true"] {
+.activity-tabs a[aria-current] {
   color: var(--green);
   border-color: currentColor;
 }
@@ -97,11 +97,11 @@ summary.hobby-heading::after {
   border-width: 0 1.5px 1.5px 0;
   transform: rotate(45deg);
 }
-.hobby-album details[open] summary::after {
+.hobby-album details[open] > summary.hobby-heading::after {
   transform: rotate(225deg);
 }
 summary.hobby-heading:hover,
-.hobby-album details[open] summary {
+.hobby-album details[open] > summary.hobby-heading {
   color: var(--green);
 }
 .hobby-album :focus-visible {
@@ -137,6 +137,18 @@ summary.hobby-heading:hover,
 .hobby-subheading {
   margin: .5rem 0;
   font-size: 1rem;
+}
+.travel-region {
+  margin: 0 .25rem 0 1rem;
+  border-top: 1px solid var(--line);
+}
+.travel-region > summary {
+  padding: .75rem .25rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+.travel-region > summary::marker {
+  color: var(--green);
 }
 .hobby-entries .entry-rating,
 .project-share-status {
@@ -386,16 +398,19 @@ summary.hobby-heading:hover,
 .conference-photos {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: .75rem;
   margin-top: .75rem;
 }
 .conference-photos a {
-  flex: 0 1 13rem;
+  flex: 0 1 min(13rem, calc((100% - .75rem) / 2));
   max-width: 100%;
+}
+.conference-photos a:only-child {
+  flex-basis: 13rem;
 }
 .conference-photos img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
 }

@@ -4,7 +4,7 @@ import { extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const activities = fileURLToPath(new URL('../activities/', import.meta.url));
-const pagePath = join(activities, 'index.html');
+const pagePath = join(activities, 'hobbies.html');
 const startMarker = '<!-- hobby-albums:start -->';
 const endMarker = '<!-- hobby-albums:end -->';
 const extensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif']);
@@ -55,8 +55,8 @@ function entryHtml(entry, shareLinks) {
   return parts.join('\n');
 }
 
-async function photoGallery(slug, name) {
-  const directory = join(activities, 'photos', slug);
+async function photoGallery(folders, name) {
+  const directory = join(activities, 'photos', ...folders);
   await mkdir(directory, { recursive: true });
   const entries = await readdir(directory, { withFileTypes: true });
   const files = entries
@@ -64,9 +64,10 @@ async function photoGallery(slug, name) {
     .map(entry => entry.name)
     .sort();
   if (!files.length) return '';
+  const urlPrefix = folders.map(encodeURIComponent).join('/');
   const lines = ['      <div class="album-photos">'];
   for (const file of files) {
-    const url = escapeHtml(`photos/${slug}/${encodeURIComponent(file)}`);
+    const url = escapeHtml(`photos/${urlPrefix}/${encodeURIComponent(file)}`);
     const title = file.slice(0, -extname(file).length).replace(/[-_]+/g, ' ').trim();
     const label = escapeHtml(title || `${name} photo`);
     lines.push(`        <a href="${url}" aria-label="View ${label} at full size"><img src="${url}" loading="lazy" decoding="async" alt="${label}"></a>`);
@@ -75,13 +76,34 @@ async function photoGallery(slug, name) {
   return lines.join('\n');
 }
 
-async function collectionHtml({slug, name, entries, photos, shareLinks}, grouped) {
+async function regionalGalleries(slug) {
+  const directory = join(activities, 'photos', slug);
+  await mkdir(directory, { recursive: true });
+  const entries = await readdir(directory, { withFileTypes: true });
+  const regions = entries
+    .filter(entry => entry.isDirectory() && !entry.name.startsWith('.'))
+    .map(entry => entry.name)
+    .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
+  const sections = [];
+  for (const region of regions) {
+    const gallery = await photoGallery([slug, region], region);
+    if (gallery) {
+      sections.push(`      <details class="travel-region"><summary>${escapeHtml(region)}</summary>`,
+                    gallery, '      </details>');
+    }
+  }
+  return sections.join('\n');
+}
+
+async function collectionHtml({slug, name, entries, photos, photosByRegion, shareLinks}, grouped) {
   if (!/^[a-z0-9-]+$/.test(slug)) throw new Error(`Invalid hobby folder name: ${slug}`);
   const parts = [];
   if (entries.length) {
     parts.push('      <ul class="hobby-entries">', ...entries.map(entry => entryHtml(entry, shareLinks)), '      </ul>');
   }
-  const gallery = photos ? await photoGallery(slug, name) : '';
+  let gallery = '';
+  if (photosByRegion) gallery = await regionalGalleries(slug);
+  else if (photos) gallery = await photoGallery([slug], name);
   if (gallery) parts.push(gallery);
   if (grouped && parts.length) {
     parts.unshift(`      <h3 class="hobby-subheading" id="album-${slug}">${escapeHtml(name)}</h3>`);

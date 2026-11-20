@@ -1,68 +1,79 @@
 (() => {
-  const tabList = document.querySelector('.activity-tabs');
-  if (!tabList) return;
+  const navigation = document.querySelector('.activity-tabs');
+  if (!navigation) return;
 
-  const tabs = Array.from(tabList.querySelectorAll('a[href^="#"]'));
-  const panels = tabs.map(tab => document.getElementById(tab.hash.slice(1)));
-  if (!tabs.length || panels.some(panel => !panel)) return;
+  const links = Array.from(navigation.querySelectorAll('a[href]'));
+  const sections = [];
+  for (const link of navigation.querySelectorAll('a[href^="#"]')) {
+    const panel = document.getElementById(link.hash.slice(1));
+    if (panel) sections.push({ link, panel });
+  }
 
-  function showTab(selected) {
-    tabs.forEach((tab, index) => {
-      const active = tab === selected;
-      tab.setAttribute('aria-selected', String(active));
-      tab.tabIndex = active ? 0 : -1;
-      panels[index].hidden = !active;
-    });
+  function showSection(selected) {
+    const focused = document.activeElement;
+    for (const { link, panel } of sections) {
+      const active = panel === selected.panel;
+      if (!active && panel.contains(focused)) selected.link.focus({ preventScroll: true });
+      panel.hidden = !active;
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
   }
 
   function syncLocation() {
-    const selected = tabs.find(tab => tab.hash === location.hash) || tabs[0];
-    const focus = document.activeElement;
-    const focusInTabs = tabList.contains(focus);
-    const focusInOtherPanel = panels.some((panel, i) => tabs[i] !== selected && panel.contains(focus));
-    showTab(selected);
-    if (focusInTabs || focusInOtherPanel) selected.focus({ preventScroll: true });
+    if (!sections.length) return;
+    const target = document.getElementById(location.hash.slice(1));
+    if (location.hash === '#hobbies' && navigation.contains(target)) {
+      location.replace(target.href);
+      return;
+    }
+    const selected = sections.find(({ panel }) => panel.contains(target)) || sections[0];
+    showSection(selected);
   }
 
-  function select(tab) {
-    if (location.hash !== tab.hash) history.pushState(null, '', tab.hash);
-    showTab(tab);
-    tab.focus({ preventScroll: true });
+  function closeAlbums() {
+    for (const album of document.querySelectorAll('#hobbies .hobby-album details[open]')) {
+      album.open = false;
+    }
   }
 
-  tabList.setAttribute('role', 'tablist');
-  tabs.forEach((tab, index) => {
-    const panel = panels[index];
-    tab.id = 'tab-' + panel.id;
-    tab.setAttribute('role', 'tab');
-    tab.setAttribute('aria-controls', panel.id);
-    panel.setAttribute('role', 'tabpanel');
-    panel.setAttribute('aria-labelledby', tab.id);
-    panel.tabIndex = 0;
-
-    tab.addEventListener('click', event => {
+  for (const section of sections) {
+    section.link.addEventListener('click', event => {
       if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      select(tab);
+      if (location.hash !== section.link.hash) history.pushState(null, '', section.link.hash);
+      showSection(section);
+      section.link.focus({ preventScroll: true });
     });
+  }
 
-    tab.addEventListener('keydown', event => {
+  links.forEach((link, index) => {
+    link.addEventListener('keydown', event => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
       let next;
       switch (event.key) {
-        case 'ArrowLeft': next = (index - 1 + tabs.length) % tabs.length; break;
-        case 'ArrowRight': next = (index + 1) % tabs.length; break;
+        case 'ArrowLeft': next = (index - 1 + links.length) % links.length; break;
+        case 'ArrowRight': next = (index + 1) % links.length; break;
         case 'Home': next = 0; break;
-        case 'End': next = tabs.length - 1; break;
-        case ' ': next = index; break;
+        case 'End': next = links.length - 1; break;
+        case ' ':
+          event.preventDefault();
+          if (!event.repeat) link.click();
+          return;
         default: return;
       }
       event.preventDefault();
-      select(tabs[next]);
+      links[next].focus();
     });
   });
 
   syncLocation();
+  closeAlbums();
+  window.addEventListener('pageshow', event => {
+    if (!event.persisted) return;
+    syncLocation();
+    closeAlbums();
+  });
   window.addEventListener('popstate', syncLocation);
   window.addEventListener('hashchange', syncLocation);
 })();
