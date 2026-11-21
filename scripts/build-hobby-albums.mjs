@@ -55,17 +55,14 @@ function entryHtml(entry, shareLinks) {
   return parts.join('\n');
 }
 
-async function photoGallery(folders, name) {
-  const directory = join(activities, 'photos', ...folders);
-  await mkdir(directory, { recursive: true });
-  const entries = await readdir(directory, { withFileTypes: true });
+async function photoGrid(folders, name, entries) {
   const files = entries
     .filter(entry => entry.isFile() && extensions.has(extname(entry.name).toLowerCase()))
     .map(entry => entry.name)
     .sort();
   if (!files.length) return '';
   const hasThumbnails = entries.some(entry => entry.isDirectory() && entry.name === 'thumbnails');
-  const thumbnails = new Set(hasThumbnails ? await readdir(join(directory, 'thumbnails')) : []);
+  const thumbnails = new Set(hasThumbnails ? await readdir(join(activities, 'photos', ...folders, 'thumbnails')) : []);
   const urlPrefix = folders.map(encodeURIComponent).join('/');
   const lines = ['      <div class="album-photos">'];
   for (const file of files) {
@@ -82,19 +79,25 @@ async function photoGallery(folders, name) {
   return lines.join('\n');
 }
 
-async function regionalGalleries(slug) {
-  const directory = join(activities, 'photos', slug);
+async function photoGallery(folders, name, byRegion) {
+  const directory = join(activities, 'photos', ...folders);
   await mkdir(directory, { recursive: true });
   const entries = await readdir(directory, { withFileTypes: true });
-  const regions = entries
-    .filter(entry => entry.isDirectory() && !entry.name.startsWith('.'))
+  if (!byRegion) return photoGrid(folders, name, entries);
+
+  const sections = [];
+  if (folders.length > 1) {
+    const grid = await photoGrid(folders, name, entries);
+    if (grid) sections.push(grid);
+  }
+  const subfolders = entries
+    .filter(entry => entry.isDirectory() && entry.name !== 'thumbnails' && !entry.name.startsWith('.'))
     .map(entry => entry.name)
     .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
-  const sections = [];
-  for (const region of regions) {
-    const gallery = await photoGallery([slug, region], region);
+  for (const folder of subfolders) {
+    const gallery = await photoGallery([...folders, folder], folder, byRegion);
     if (gallery) {
-      sections.push(`      <details class="travel-region"><summary>${escapeHtml(region)}</summary>`,
+      sections.push(`      <details class="travel-region"><summary>${escapeHtml(folder)}</summary>`,
                     gallery, '      </details>');
     }
   }
@@ -107,10 +110,10 @@ async function collectionHtml({slug, name, entries, photos, photosByRegion, shar
   if (entries.length) {
     parts.push('      <ul class="hobby-entries">', ...entries.map(entry => entryHtml(entry, shareLinks)), '      </ul>');
   }
-  let gallery = '';
-  if (photosByRegion) gallery = await regionalGalleries(slug);
-  else if (photos) gallery = await photoGallery([slug], name);
-  if (gallery) parts.push(gallery);
+  if (photos || photosByRegion) {
+    const gallery = await photoGallery([slug], name, photosByRegion);
+    if (gallery) parts.push(gallery);
+  }
   if (grouped && parts.length) {
     parts.unshift(`      <h3 class="hobby-subheading" id="album-${slug}">${escapeHtml(name)}</h3>`);
   }
