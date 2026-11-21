@@ -171,15 +171,21 @@ summary.hobby-heading:hover,
 }
 .album-photos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, min(100%, 8rem));
+  gap: .625rem;
   margin: .25rem 0 1.25rem;
 }
 .album-photos img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--paper);
+  box-sizing: border-box;
 }
 @media (max-width: 800px) {
   .activity-panel {
@@ -187,6 +193,9 @@ summary.hobby-heading:hover,
   }
 }
 @media (max-width: 600px) {
+  .album-photos {
+    grid-template-columns: repeat(auto-fill, min(100%, 6.25rem));
+  }
   .activity-work {
     grid-template-columns: 1fr;
   }

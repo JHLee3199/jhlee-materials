@@ -34,6 +34,8 @@ Cooking and Baking appear together on the page. They each have an `entries` list
 
 For Travel, create one folder per region under `activities/photos/travel/`. For example, `activities/photos/travel/제주/성산 일출.jpg` appears under **Travel → 제주**. Use the region name as you want it displayed. Each region appears once it contains a photo.
 
+To use a smaller preview, save it in a `thumbnails/` subfolder beside the photo. For example, `guitar/thumbnails/session.jpg.webp` is the preview for `guitar/session.jpg`. Selecting a thumbnail opens the full photo.
+
 Run `node scripts/build-hobby-albums.mjs` from the repository root after updating entries or media. It refreshes `activities/hobbies.html`. A hobby becomes expandable when its first entry or photo is available.
 
 Store local hobby recordings and downloadable files under `activities/hobby-media/`.

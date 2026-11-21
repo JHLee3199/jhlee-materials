@@ -64,13 +64,19 @@ async function photoGallery(folders, name) {
     .map(entry => entry.name)
     .sort();
   if (!files.length) return '';
+  const hasThumbnails = entries.some(entry => entry.isDirectory() && entry.name === 'thumbnails');
+  const thumbnails = new Set(hasThumbnails ? await readdir(join(directory, 'thumbnails')) : []);
   const urlPrefix = folders.map(encodeURIComponent).join('/');
   const lines = ['      <div class="album-photos">'];
   for (const file of files) {
     const url = escapeHtml(`photos/${urlPrefix}/${encodeURIComponent(file)}`);
+    const thumbnail = `${file}.webp`;
+    const preview = thumbnails.has(thumbnail)
+      ? escapeHtml(`photos/${urlPrefix}/thumbnails/${encodeURIComponent(thumbnail)}`)
+      : url;
     const title = file.slice(0, -extname(file).length).replace(/[-_]+/g, ' ').trim();
     const label = escapeHtml(title || `${name} photo`);
-    lines.push(`        <a href="${url}" aria-label="View ${label} at full size"><img src="${url}" loading="lazy" decoding="async" alt="${label}"></a>`);
+    lines.push(`        <a href="${url}" aria-label="View ${label} at full size"><img src="${preview}" loading="lazy" decoding="async" alt="${label}"></a>`);
   }
   lines.push('      </div>');
   return lines.join('\n');
