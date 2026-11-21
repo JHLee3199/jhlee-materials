@@ -4,14 +4,13 @@
   const agenda = calendar?.querySelector('.calendar-events');
   if (!view || !agenda) return;
 
-  const events = new Map();
-  const agendaRows = [...agenda.querySelectorAll('li')];
-  for (const row of agendaRows) {
-    const day = row.querySelector('time')?.dateTime;
+  const events = [];
+  for (const row of agenda.querySelectorAll('li')) {
+    const [first, last] = row.querySelectorAll('time');
+    const start = first?.dateTime;
+    const end = last?.dateTime || start;
     const label = row.querySelector('span')?.textContent.trim();
-    if (!day || !label) continue;
-    if (!events.has(day)) events.set(day, []);
-    events.get(day).push(label);
+    if (start && label) events.push({ row, start, end, label });
   }
 
   const today = new Date();
@@ -52,11 +51,12 @@
 
   function renderMonth() {
     heading.textContent = monthFormat.format(month);
-    const prefix = dayKey(month).slice(0, 7) + '-';
-    for (const row of agendaRows) {
-      row.hidden = !row.querySelector('time')?.dateTime.startsWith(prefix);
+    const monthKey = dayKey(month).slice(0, 7);
+    for (const event of events) {
+      event.row.hidden = event.start.slice(0, 7) > monthKey || event.end.slice(0, 7) < monthKey;
     }
-    agenda.hidden = !agendaRows.some(row => !row.hidden);
+    const visibleEvents = events.filter(event => !event.row.hidden);
+    agenda.hidden = visibleEvents.length === 0;
     empty.hidden = !agenda.hidden;
     body.replaceChildren();
     const firstColumn = (month.getDay() + 6) % 7;
@@ -78,8 +78,10 @@
       time.textContent = String(number);
       if (key === todayKey) time.setAttribute('aria-current', 'date');
       td.append(time);
-      const labels = events.get(key);
-      if (labels) {
+      const labels = visibleEvents
+        .filter(event => event.start <= key && key <= event.end)
+        .map(event => event.label);
+      if (labels.length) {
         td.classList.add('has-events');
         td.title = labels.join(' · ');
         td.setAttribute('aria-label', `${dateFormat.format(date)}. ${labels.join('. ')}`);
